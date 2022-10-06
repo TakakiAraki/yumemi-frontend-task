@@ -12,19 +12,7 @@ type IIndexProps = {
 const index = (props: IIndexProps) => {
   /* props */
   const { name } = props;
-  const [current, send] = useMachine(ExampleMachine, {
-    actions: {
-      'fail': () => {
-        console.log('hoge');
-      },
-      'entry-loading': () => {
-        console.log('loading');
-      },
-      'entry-failed': (context) => {
-        context.failCount += 1;
-      },
-    }
-  });
+  const [current, send] = useMachine(ExampleMachine);
 
   return (
     <div>
