@@ -10,12 +10,13 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "detect"
+      version: "detect",
     },
   },
   parser: "@typescript-eslint/parser",
+  ignorePatterns: ["**/*.md"],
 
   rules: {
-    'no-console': 'error',
-  }
+    "no-console": "error",
+  },
 };
