@@ -1,0 +1,33 @@
+{
+  "id": "example-machine",
+  "initial": "initial",
+  "states": {
+    "initial": {
+      "on": {
+        "fetch": {
+          "target": "loading"
+        }
+      }
+    },
+    "loading": {
+      "entry": "entry-loading",
+      "on": {
+        "success": {
+          "target": "done"
+        },
+        "fail": {
+          "target": "failed"
+        }
+      }
+    },
+    "done": {},
+    "failed": {
+      "entry": "entry-failed",
+      "on": {
+        "refetch": {
+          "target": "loading"
+        }
+      }
+    }
+  }
+}
