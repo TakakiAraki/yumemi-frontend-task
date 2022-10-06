@@ -11,7 +11,6 @@ const index = (props: IIndexProps) => {
   /* props */
   const { name } = props;
 
-  console.log('hoge');
   return (
     <div>
       <h1>{name}</h1>
