@@ -1,11 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
 
 type IIndexProps = {
   name: string;
-}
+};
 
 const index = (props: IIndexProps) => {
   /* props */
@@ -22,7 +22,7 @@ const index = (props: IIndexProps) => {
 // ServerSideRendering;
 index.getInitialProps = () => {
   // fetch
-  return { name: 'hello' }
-}
+  return { name: "hello" };
+};
 
 export default index;
