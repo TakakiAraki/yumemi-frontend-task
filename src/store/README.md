@@ -1,4 +1,3 @@
-
 ## 概要
 
 [xstate](https://xstate.js.org/)
@@ -7,4 +6,3 @@
 [docs](https://xstate.js.org/docs/)
 
 TODO: アーキテクチャ決定時に記述
-

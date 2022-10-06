@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { useMachine } from '@xstate/react';
-import { ExampleMachine } from '../store/example/Example';
+import * as React from "react";
+import { useMachine } from "@xstate/react";
+import { ExampleMachine } from "../store/example/Example";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
 
 type IIndexProps = {
   name: string;
-}
+};
 
 const index = (props: IIndexProps) => {
   /* props */
@@ -19,30 +19,22 @@ const index = (props: IIndexProps) => {
       <div>
         <h1>{name}</h1>
       </div>
-      <button onClick={() => send('fetch')}
-        disabled={!current.matches('initial')}>
+      <button onClick={() => send("fetch")} disabled={!current.matches("initial")}>
         send fetch
       </button>
 
-      <button onClick={() => send('fail')}
-        disabled={!current.matches('loading')}>
+      <button onClick={() => send("fail")} disabled={!current.matches("loading")}>
         send fail
       </button>
-      <button onClick={() => send('refetch')}
-        disabled={!current.matches('failed')}>
+      <button onClick={() => send("refetch")} disabled={!current.matches("failed")}>
         send refetch
       </button>
-      <button onClick={() => send('success')}
-        disabled={!current.matches('loading')}>
+      <button onClick={() => send("success")} disabled={!current.matches("loading")}>
         send success
       </button>
-      <p>
-        {current.toStrings()}
-      </p>
+      <p>{current.toStrings()}</p>
 
-      <p>
-        {current.context.failCount}回失敗しました
-      </p>
+      <p>{current.context.failCount}回失敗しました</p>
     </div>
   );
 };
@@ -50,7 +42,7 @@ const index = (props: IIndexProps) => {
 // ServerSideRendering;
 index.getInitialProps = () => {
   // fetch
-  return { name: 'hello' }
-}
+  return { name: "hello" };
+};
 
 export default index;
