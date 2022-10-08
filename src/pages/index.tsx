@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useMachine } from "@xstate/react";
-import { ExampleMachine } from "../store/example/Example";
+import { ExampleMachine } from "../stores/example/Example";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
@@ -22,7 +22,6 @@ const index = (props: IIndexProps) => {
       <button onClick={() => send("fetch")} disabled={!current.matches("initial")}>
         send fetch
       </button>
-
       <button onClick={() => send("fail")} disabled={!current.matches("loading")}>
         send fail
       </button>
@@ -33,7 +32,6 @@ const index = (props: IIndexProps) => {
         send success
       </button>
       <p>{current.toStrings()}</p>
-
       <p>{current.context.failCount}回失敗しました</p>
     </div>
   );
