@@ -2,27 +2,25 @@ import * as React from "react";
 import { useMachine } from "@xstate/react";
 import { ExampleMachine } from "~/stores/example/Example";
 import dynamic from "next/dynamic";
+import { PrefecturesAPIResult } from "~/resources/resas/interfaces";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
 
-type IIndexProps = {
-  name: string;
-};
+export interface IndexProps {
+  data: PrefecturesAPIResult;
+}
 
 const ExampleChart = dynamic(() => import("~/components/common/graph/ExampleChart"), {
   ssr: false,
 });
-const index = (props: IIndexProps) => {
+const index = (props: IndexProps) => {
   /* props */
-  const { name } = props;
   const [current, send] = useMachine(ExampleMachine);
 
   return (
     <div>
-      <div>
-        <h1>{name}</h1>
-      </div>
+      <p>{JSON.stringify(props)}</p>
       {/* 
         横軸に関しては
       */}
@@ -83,10 +81,10 @@ const index = (props: IIndexProps) => {
   );
 };
 
-// ServerSideRendering;
-index.getInitialProps = () => {
-  // fetch
-  return { name: "hello" };
+export const getStaticProps = async (): IndexProps => {
+  return {
+    data: {},
+  };
 };
 
 export default index;

@@ -6,7 +6,7 @@ import { PrefecturesAPIResult } from "./interfaces";
 /**
  * https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
  */
-export const fetchPrefectures = async (): PrefecturesAPIResult => {
+export const fetchPrefectures = async (): Promise<PrefecturesAPIResult> => {
   const response = await fetchResas("/api/v1/prefectures");
   if (response instanceof RequestError || response instanceof ResponseError) {
     return {
