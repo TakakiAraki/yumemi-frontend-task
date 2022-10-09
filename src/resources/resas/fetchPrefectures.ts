@@ -8,8 +8,7 @@ import { PrefecturesAPIResult } from "./interfaces";
  */
 export const fetchPrefectures = async (): PrefecturesAPIResult => {
   const response = await fetchResas("/api/v1/prefectures");
-
-  if (response instanceof RequestError) {
+  if (response instanceof RequestError || response instanceof ResponseError) {
     return {
       state: "ERROR",
       result: {
@@ -18,18 +17,6 @@ export const fetchPrefectures = async (): PrefecturesAPIResult => {
       },
     };
   }
-
-  if (!response.ok) {
-    const result = new ResponseError(response);
-    return {
-      state: "ERROR",
-      result: {
-        code: result.name,
-        message: result.message,
-      },
-    };
-  }
-
   const result = await response.json();
   return {
     state: "SUCCESS",
