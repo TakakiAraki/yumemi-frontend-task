@@ -25,3 +25,9 @@
 - {ComponentName}.module.sass を使用すること。
 - [css variable](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties)を積極的に使用する
 
+
+## Q&A
+
+### fetchでquery parameterを渡したい
+
+[fetchでクエリパラメータを渡す方法 - qiita](https://qiita.com/nikiperusuu/items/2a653f2381bd5ae35c10)
