@@ -2,7 +2,7 @@ import * as React from "react";
 import { useMachine } from "@xstate/react";
 import { ExampleMachine } from "~/stores/example/Example";
 import dynamic from "next/dynamic";
-import { PrefecturesAPIResult } from "~/resources/resas/interfaces";
+import { PrefecturesAPIResult } from "~/usecases/prefectures/interfaces";
 import { fetchPrefectures } from "~/resources/resas/fetchPrefectures";
 import { GetStaticProps } from "next";
 import { clock } from "~/utils/clock";

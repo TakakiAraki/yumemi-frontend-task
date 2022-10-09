@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchPrefectures } from "resources/resas/fetchPrefectures";
+import prefectures from "~/usecases/prefectures/prefectures";
 
 // https://opendata.resas-portal.go.jp
 // /api/v1/prefectures
 
 export default async (_: NextApiRequest, res: NextApiResponse) => {
-  const { state, result } = await fetchPrefectures();
+  const { state, result } = await prefectures();
 
   switch (state) {
     case "SUCCESS":

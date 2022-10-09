@@ -1,7 +1,7 @@
 import { RequestError } from "~/errors/api/RequestError";
 import ResponseError from "~/errors/api/ResponseError";
+import { PrefecturesAPIResult } from "~/usecases/prefectures/interfaces";
 import { fetchResas } from "./base";
-import { PrefecturesAPIResult } from "./interfaces";
 
 /**
  * https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html
