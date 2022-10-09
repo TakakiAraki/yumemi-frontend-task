@@ -1,5 +1,14 @@
 # yumemi-frontend-task
 
+## 入門
+
+1. nodejsのバージョン管理ソフト`volta`をインストール
+2. RESAS API KEY を下記のサイトから会員登録し取得
+    - https://opendata.resas-portal.go.jp/form.html
+3. `.env.local`をコピーし、RESAS_API_KEYに対し上記から取得したトークンを代入
+4. `yarn install` を実行し必要なパッケージをインストール
+5. `yarn dev`を実行し、 http://localhost:3000 へアクセス
+
 ## 概要
 
 ### 各種リンク
