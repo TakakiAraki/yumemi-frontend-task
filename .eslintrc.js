@@ -4,7 +4,12 @@ module.exports = {
     node: true,
     browser: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:storybook/recommended",
+  ],
   plugins: ["@typescript-eslint"],
   parserOptions: {
     ecmaVersion: "latest",
@@ -16,8 +21,7 @@ module.exports = {
     },
   },
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["**/*.md", "**/*.scss"],
-
+  ignorePatterns: ["**/*.md", "**/*.scss", "**/*.mdx", "**/*.svg"],
   rules: {
     "no-console": "warn",
     "no-undef": "off",
