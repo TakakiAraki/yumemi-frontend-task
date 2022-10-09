@@ -1,4 +1,4 @@
-import { reduce } from "~/utils/array";
+import { reduces } from "~/utils/array";
 
 describe("reduce test", () => {
   test("filter map", () => {
@@ -6,7 +6,7 @@ describe("reduce test", () => {
     const initialValue: { val: number }[] = [];
 
     const result = value.reduce(
-      reduce.filterMap((val) => {
+      reduces.filterMap((val) => {
         if (val === 1) return false;
         return {
           val,
