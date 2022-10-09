@@ -1,5 +1,14 @@
 # yumemi-frontend-task
 
+## 入門
+
+1. nodejsのバージョン管理ソフト`volta`をインストール
+2. RESAS API KEY を下記のサイトから会員登録し取得
+    - https://opendata.resas-portal.go.jp/form.html
+3. `.env.local`をコピーし、RESAS_API_KEYに対し上記から取得したトークンを代入
+4. `yarn install` を実行し必要なパッケージをインストール
+5. `yarn dev`を実行し、 http://localhost:3000 へアクセス
+
 ## 概要
 
 ### 各種リンク
@@ -16,3 +25,9 @@
 - {ComponentName}.module.sass を使用すること。
 - [css variable](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties)を積極的に使用する
 
+
+## Q&A
+
+### fetchでquery parameterを渡したい
+
+[fetchでクエリパラメータを渡す方法 - qiita](https://qiita.com/nikiperusuu/items/2a653f2381bd5ae35c10)

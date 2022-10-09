@@ -16,7 +16,7 @@ export default class Wrap extends App {
     return (
       <div className="theme-white">
         <QueryClientProvider client={queryClient}>
-          {is.isDevelopment ? <ReactQueryDevtools initialIsOpen /> : null}
+          {is.development ? <ReactQueryDevtools initialIsOpen /> : null}
           <Component {...pageProps} />
         </QueryClientProvider>
       </div>

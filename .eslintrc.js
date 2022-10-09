@@ -5,6 +5,7 @@ module.exports = {
     browser: true,
   },
   extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  plugins: ["@typescript-eslint"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
@@ -18,6 +19,7 @@ module.exports = {
   ignorePatterns: ["**/*.md", "**/*.scss"],
 
   rules: {
-    "no-console": "error",
+    "no-console": "warn",
+    "no-undef": "off",
   },
 };
