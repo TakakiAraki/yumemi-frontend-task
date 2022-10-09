@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    browser: true,
   },
   extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
   parserOptions: {
@@ -14,7 +15,7 @@ module.exports = {
     },
   },
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["**/*.md"],
+  ignorePatterns: ["**/*.md", "**/*.scss"],
 
   rules: {
     "no-console": "error",
