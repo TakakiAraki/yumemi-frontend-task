@@ -1,5 +1,5 @@
-import { RequestError } from "errors/api/RequestError";
-import ResponseError from "errors/api/ResponseError";
+import { RequestError } from "~/errors/api/RequestError";
+import ResponseError from "~/errors/api/ResponseError";
 import { fetchResas } from "./base";
 import { PrefecturesAPIResult } from "./interfaces";
 

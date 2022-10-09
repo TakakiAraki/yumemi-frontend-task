@@ -1,5 +1,5 @@
 import { createElement, HTMLAttributes, ReactNode, useMemo } from "react";
-import { is } from "utils/Is";
+import { is } from "~/utils/Is";
 import styles from "./Text.module.scss";
 import clsx from "clsx";
 

@@ -1,4 +1,4 @@
-import { ResourceResult } from "interfaces/resources";
+import { ResourceResult } from "~/interfaces/resources";
 
 export interface Prefectures {
   message?: any;

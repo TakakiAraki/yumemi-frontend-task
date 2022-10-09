@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "reset-css/sass/_reset.scss";
 import "./_app.scss";
-import "styles/colors.scss";
-import { is } from "utils/Is";
+import "~/styles/colors.scss";
+import { is } from "~/utils/Is";
 
 const queryClient = new QueryClient();
 

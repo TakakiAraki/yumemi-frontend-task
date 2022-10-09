@@ -1,5 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
-import { Text } from "components/common/text/Text";
+import { Text } from "~/components/common/text/Text";
 
 export const Primary = {};
 export default {
