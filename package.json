@@ -13,6 +13,7 @@
     "start": "next start -p 80",
     "lint:js": "eslint --fix ./src/**",
     "fix:js": "prettier --write ./src/**",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
