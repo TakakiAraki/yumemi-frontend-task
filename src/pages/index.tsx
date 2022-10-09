@@ -3,12 +3,15 @@ import { useMachine } from "@xstate/react";
 import { ExampleMachine } from "~/stores/example/Example";
 import dynamic from "next/dynamic";
 import { PrefecturesAPIResult } from "~/resources/resas/interfaces";
+import { fetchPrefectures } from "~/resources/resas/fetchPrefectures";
+import { GetStaticProps } from "next";
+import { clock } from "~/utils/clock";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
 
 export interface IndexProps {
-  data: PrefecturesAPIResult;
+  prefectures: PrefecturesAPIResult;
 }
 
 const ExampleChart = dynamic(() => import("~/components/common/graph/ExampleChart"), {
@@ -81,9 +84,13 @@ const index = (props: IndexProps) => {
   );
 };
 
-export const getStaticProps = async (): IndexProps => {
+export const getStaticProps: GetStaticProps<IndexProps> = async () => {
+  const result = await fetchPrefectures();
   return {
-    data: {},
+    props: {
+      prefectures: result,
+    },
+    revalidate: clock({ days: 1 }).toSeconds(),
   };
 };
 
