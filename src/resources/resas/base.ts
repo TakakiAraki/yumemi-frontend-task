@@ -1,11 +1,22 @@
 import { RESAS_API_KEY } from "utils/env";
+import { RequestError } from "errors/api/RequestError";
 
-export const fetchResas: typeof fetch = (url, init) => {
-  return fetch(url, {
-    ...init,
-    headers: {
-      ...init?.headers,
-      "X-API-KEY": RESAS_API_KEY,
-    },
-  });
+const BASE_URL = "https://opendata.resas-portal.go.jp";
+
+export const fetchResas = async (
+  url: RequestInfo | URL,
+  init?: RequestInit,
+): Promise<Response | RequestError> => {
+  try {
+    const result = await fetch(BASE_URL + url, {
+      ...init,
+      headers: {
+        ...init?.headers,
+        "X-API-KEY": RESAS_API_KEY,
+      },
+    });
+    return result;
+  } catch (_error) {
+    return new RequestError(url, init);
+  }
 };
