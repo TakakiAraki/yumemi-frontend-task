@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["**/*.md"],
+  ignorePatterns: ["**/*.md", "**/*.scss"],
 
   rules: {
     "no-console": "error",
