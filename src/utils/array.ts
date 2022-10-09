@@ -6,7 +6,7 @@ type FilterCb<Value extends unknown, Result extends unknown> = (
   array: Value[],
 ) => false | null | undefined | Result;
 
-export const reduce = {
+export const reduces = {
   filterMap:
     <Value extends unknown, Result extends unknown>(cb: FilterCb<Value, Result>) =>
     (
