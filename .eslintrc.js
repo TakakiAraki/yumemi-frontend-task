@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   parser: "@typescript-eslint/parser",
-  ignorePatterns: ["**/*.md", "**/*.scss", "**/*.mdx"],
+  ignorePatterns: ["**/*.md", "**/*.scss", "**/*.mdx", "**/*.svg"],
   rules: {
     "no-console": "warn",
     "no-undef": "off",
