@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useMachine } from "@xstate/react";
-import { ExampleMachine } from "../stores/example/Example";
+import { ExampleMachine } from "~/stores/example/Example";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';

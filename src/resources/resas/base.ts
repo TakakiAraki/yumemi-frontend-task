@@ -1,5 +1,5 @@
-import { RESAS_API_KEY } from "utils/env";
-import { RequestError } from "errors/api/RequestError";
+import { RESAS_API_KEY } from "~/utils/env";
+import { RequestError } from "~/errors/api/RequestError";
 
 const BASE_URL = "https://opendata.resas-portal.go.jp";
 
