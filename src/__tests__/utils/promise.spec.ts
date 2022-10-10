@@ -39,16 +39,10 @@ describe("promise control test", () => {
 
   test("直列処理", (done) => {
     const main = async () => {
-      let count = 0;
-      const cb = promiseControl(
-        () => {
-          count++;
-        },
-        {
-          thresholdTime: clock({ seconds: 1 }).toMilliseconds(),
-          maxRequestCount: 1,
-        },
-      );
+      const cb = promiseControl(() => {}, {
+        thresholdTime: clock({ seconds: 1 }).toMilliseconds(),
+        maxRequestCount: 1,
+      });
       const prevTime = Date.now();
       await Promise.all([cb(), cb(), cb()]);
       await cb();
