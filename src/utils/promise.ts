@@ -11,6 +11,12 @@ interface PromiseControlOptions {
   thresholdTime?: number;
   maxRequestCount?: number;
 }
+
+/**
+ * @param cb 対象となるpromise関数
+ * @param options.thresholdTime 検査する時間(ms)
+ * @param options.maxRequestCount 同時に実行できるカウント
+ */
 export const promiseControl = <Callback extends (...args: any[]) => any>(
   cb: Callback,
   options?: PromiseControlOptions,

@@ -7,7 +7,6 @@ import { fetchPrefectures } from "~/resources/resas/fetchPrefectures";
 import { GetStaticProps } from "next";
 import { clock } from "~/utils/clock";
 import prefectures from "~/usecases/prefectures/prefectures";
-import { mockPrefectures } from "~/resources/resas/mockPrefectures";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
