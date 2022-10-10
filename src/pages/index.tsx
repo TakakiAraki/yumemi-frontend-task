@@ -25,6 +25,12 @@ const ExampleChart = dynamic(() => import("~/components/common/graph/ExampleChar
 const index = (props: IndexProps) => {
   /* props */
   const [current, send] = useMachine(ExampleMachine);
+  const label =
+    props.prefectures.state === "SUCCESS"
+      ? props.prefectures.result.result
+          .map((val) => ({ [val.prefCode]: val.prefName }))
+          .reduce((prev, next) => ({ ...prev, ...next }))
+      : [];
   const data = props.demographics.state === "SUCCESS" ? props.demographics.result : [];
 
   return (
@@ -33,7 +39,7 @@ const index = (props: IndexProps) => {
       {/* 
         横軸に関しては
       */}
-      <ExampleChart data={data} />
+      <ExampleChart data={data} labels={label} />
       <button onClick={() => send("fetch")} disabled={!current.matches("initial")}>
         send fetch
       </button>

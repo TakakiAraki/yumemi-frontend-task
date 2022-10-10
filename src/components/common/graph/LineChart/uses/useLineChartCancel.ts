@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useLineChartContext } from "../state/machine";
+import { useLineChartContext } from "../states/machine";
 
 export default () => {
   const lineChartState = useLineChartContext();

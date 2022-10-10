@@ -7,5 +7,6 @@ export const is = {
   notNull: <T extends unknown>(value: T | null | undefined): value is T => value != null,
   client: typeof process === "undefined",
   server: typeof window === "undefined",
+  number: (val: unknown): val is number => typeof val === "number",
   array: Array.isArray,
 };
