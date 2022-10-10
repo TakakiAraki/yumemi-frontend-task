@@ -1,17 +1,5 @@
 import { ResourceResult } from "~/interfaces/resources";
-
-export interface Prefectures {
-  message?: any;
-  result: PrefecturesResult[];
-}
-
-interface PrefecturesResult {
-  prefCode: number;
-  prefName: string;
-}
-
-export type PrefecturesAPIRequestProps<T = unknown> = T;
-export type PrefecturesAPIResult = ResourceResult<Prefectures>;
+import { UsecaseResult } from "~/interfaces/usecase";
 
 export interface Demographics {
   message?: any;
@@ -33,6 +21,7 @@ interface Result {
 }
 
 interface Datum2 {
+  // CHECK: 将来的に label が追加される可能性があるため、要チェック
   label: string;
   data: Datum[];
 }
@@ -45,3 +34,16 @@ interface Datum {
 
 export type DemographicsAPIRequestProps = DemographicsProps;
 export type DemographicsAPIResult = ResourceResult<Demographics>;
+
+export type DemographicsRepository = (
+  props: DemographicsAPIRequestProps,
+) => Promise<DemographicsAPIResult>;
+
+export type UsecaseDemographicsSuccess = {
+  date: number;
+  values: {
+    [x: string]: number;
+  };
+}[];
+
+export type UsecaseDemographicsResult = UsecaseResult<UsecaseDemographicsSuccess>;

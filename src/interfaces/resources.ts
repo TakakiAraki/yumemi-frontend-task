@@ -11,4 +11,4 @@ export interface ResourceSuccess<T extends any> {
   result: T;
 }
 
-export type ResourceResult<T extends any> = Promise<ResourceSuccess<T> | ResourceError>;
+export type ResourceResult<T extends any> = ResourceSuccess<T> | ResourceError;

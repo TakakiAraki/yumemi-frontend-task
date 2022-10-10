@@ -25,5 +25,6 @@ module.exports = {
   rules: {
     "no-console": "warn",
     "no-undef": "off",
+    "no-unused-vars": "off",
   },
 };

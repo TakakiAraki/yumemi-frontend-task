@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`usecase test - demographics current test 1`] = `
+{
+  "result": [
+    {
+      "date": 1960,
+      "values": {
+        "1": 1681479,
+      },
+    },
+    {
+      "date": 1965,
+      "values": {
+        "1": 1462123,
+      },
+    },
+    {
+      "date": 1970,
+      "values": {
+        "1": 1309487,
+      },
+    },
+    {
+      "date": 1975,
+      "values": {
+        "1": 1312611,
+      },
+    },
+    {
+      "date": 1980,
+      "values": {
+        "1": 1298324,
+      },
+    },
+    {
+      "date": 1985,
+      "values": {
+        "1": 1217959,
+      },
+    },
+    {
+      "date": 1990,
+      "values": {
+        "1": 1034251,
+      },
+    },
+    {
+      "date": 1995,
+      "values": {
+        "1": 898673,
+      },
+    },
+    {
+      "date": 2000,
+      "values": {
+        "1": 792352,
+      },
+    },
+    {
+      "date": 2005,
+      "values": {
+        "1": 719057,
+      },
+    },
+    {
+      "date": 2010,
+      "values": {
+        "1": 657312,
+      },
+    },
+    {
+      "date": 2015,
+      "values": {
+        "1": 608296,
+      },
+    },
+  ],
+  "state": "SUCCESS",
+}
+`;
