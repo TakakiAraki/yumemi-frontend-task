@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import { LineChart, Tooltip, Line, Legend, XAxis, YAxis, CartesianGrid } from "recharts";
 
 export interface Data {
-  date: string;
-  values: { [key: string]: number | null };
+  date: string | number;
+  values: { [key: string]: number };
 }
 
 export interface ExampleChartProps {
@@ -43,7 +43,7 @@ export const ExampleChart = ({ data }: ExampleChartProps) => {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="date" />
       <YAxis />
-      <Tooltip />
+      {/* <Tooltip /> */}
       <Legend />
       {lines}
     </LineChart>

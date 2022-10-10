@@ -7,12 +7,16 @@ import { fetchPrefectures } from "~/resources/resas/fetchPrefectures";
 import { GetStaticProps } from "next";
 import { clock } from "~/utils/clock";
 import prefectures from "~/usecases/prefectures/prefectures";
+import bulkCurrentDemographics from "~/usecases/demographics/bulkCurrentDemographics";
+import { is } from "~/utils/Is";
+import { UsecaseDemographicsResult } from "~/usecases/demographics/interface";
 
 // SSR Fetch
 // import fetch from 'isomorphic-unfetch';
 
 export interface IndexProps {
   prefectures: PrefecturesAPIResult;
+  demographics: UsecaseDemographicsResult;
 }
 
 const ExampleChart = dynamic(() => import("~/components/common/graph/ExampleChart"), {
@@ -21,52 +25,15 @@ const ExampleChart = dynamic(() => import("~/components/common/graph/ExampleChar
 const index = (props: IndexProps) => {
   /* props */
   const [current, send] = useMachine(ExampleMachine);
+  const data = props.demographics.state === "SUCCESS" ? props.demographics.result : [];
 
   return (
     <div>
-      <p>{JSON.stringify(props)}</p>
+      {/* <p>{JSON.stringify(props)}</p> */}
       {/* 
         横軸に関しては
       */}
-      <ExampleChart
-        data={[
-          {
-            date: "2019",
-            values: {
-              静岡県: 1000,
-              神奈川県: 1101,
-            },
-          },
-          {
-            date: "2020",
-            values: {
-              静岡県: 1000,
-              神奈川県: 1101,
-            },
-          },
-          {
-            date: "2021",
-            values: {
-              静岡県: null,
-              神奈川県: 1201,
-            },
-          },
-          {
-            date: "2022",
-            values: {
-              静岡県: 1200,
-              神奈川県: 1501,
-            },
-          },
-          {
-            date: "2023",
-            values: {
-              静岡県: 1200,
-              神奈川県: 1501,
-            },
-          },
-        ]}
-      />
+      <ExampleChart data={data} />
       <button onClick={() => send("fetch")} disabled={!current.matches("initial")}>
         send fetch
       </button>
@@ -85,13 +52,23 @@ const index = (props: IndexProps) => {
   );
 };
 
+// http://localhost:3000/api/v1/prefecture?prefCode=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47
 export const getStaticProps: GetStaticProps<IndexProps> = async () => {
   const result = await prefectures({
     api: fetchPrefectures,
   });
+
+  const prefCode =
+    "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47";
+  const parameters = is.array(prefCode) ? prefCode : prefCode.split(",");
+  const demographics = await bulkCurrentDemographics(
+    parameters.map((prefCode) => ({ prefCode, cityCode: "-" })),
+  );
+
   return {
     props: {
       prefectures: result,
+      demographics: demographics,
     },
     revalidate: clock({ days: 1 }).toSeconds(),
   };

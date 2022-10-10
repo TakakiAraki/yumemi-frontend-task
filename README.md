@@ -60,6 +60,7 @@ graph TD;
 - [フロントエンドコーディング試験ワイヤーフレーム](https://notion.yumemi.co.jp/ab4a837f8e764dffb0fc93c7b1387af7)
 - [ワイヤーフレーム - Figma](https://www.figma.com/file/qZWJeXzXWuIrXjKOtlqHib/Untitled?node-id=0%3A1)
 - [Kanban - Trello](https://trello.com/w/yumemifrontendtask)
+- [Sgaging環境](https://yumemi-frontend-task.vercel.app/)
 
 ### CSSガイドライン
 

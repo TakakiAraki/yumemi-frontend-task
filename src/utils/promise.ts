@@ -13,6 +13,11 @@ interface PromiseControlOptions {
 }
 
 /**
+ * このコードは、連続して同じ関数を呼び出したときに適用される制限を設定しています。
+ * まず、同じ関数が連続して呼び出されたときに、その間隔が thresholdTime（ms）以上であれば、それを無視するようにしています。
+ * 次に、連続して同じ関数を呼び出したときに、その総数が maxRequestCount（回）を超えた場合は、それを無視するようにしています。
+ * 最後に、連続して同じ関数を呼び出したときに、その間隔が thresholdTime（ms）以上であれば、それを無視するようにしています。
+ *
  * @param cb 対象となるpromise関数
  * @param options.thresholdTime 検査する時間(ms)
  * @param options.maxRequestCount 同時に実行できるカウント

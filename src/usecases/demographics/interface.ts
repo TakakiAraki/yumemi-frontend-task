@@ -1,4 +1,5 @@
 import { ResourceResult } from "~/interfaces/resources";
+import { UsecaseResult } from "~/interfaces/usecase";
 
 export interface Demographics {
   message?: any;
@@ -33,6 +34,16 @@ interface Datum {
 
 export type DemographicsAPIRequestProps = DemographicsProps;
 export type DemographicsAPIResult = ResourceResult<Demographics>;
+
 export type DemographicsRepository = (
   props: DemographicsAPIRequestProps,
 ) => Promise<DemographicsAPIResult>;
+
+export type UsecaseDemographicsSuccess = {
+  date: number;
+  values: {
+    [x: string]: number;
+  };
+}[];
+
+export type UsecaseDemographicsResult = UsecaseResult<UsecaseDemographicsSuccess>;

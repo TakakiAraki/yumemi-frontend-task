@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { fetchDemographics } from "~/resources/resas/fetchDemographics";
+import currentDemographics from "~/usecases/demographics/currentDemographics";
 import { is } from "~/utils/Is";
 
 // https://opendata.resas-portal.go.jp/docs/api/v1/population/composition/perYear.html
@@ -15,10 +16,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  const { state, result } = await fetchDemographics({
-    prefCode,
-    cityCode: "-",
-  });
+  const { state, result } = await currentDemographics(
+    {
+      prefCode,
+      cityCode: "-",
+    },
+    {
+      api: fetchDemographics,
+    },
+  );
 
   switch (state) {
     case "SUCCESS":

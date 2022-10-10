@@ -1,7 +1,7 @@
 import { fetchDemographics } from "~/resources/resas/fetchDemographics";
 import { reduces } from "~/utils/array";
 import { is } from "~/utils/Is";
-import { DemographicsRepository } from "./interface";
+import { DemographicsRepository, UsecaseDemographicsResult } from "./interface";
 
 interface ICurrent {
   prefCode: string;
@@ -11,12 +11,15 @@ interface IRepository {
   api: DemographicsRepository;
 }
 
-export default async ({ prefCode, cityCode = "-" }: ICurrent, repository?: IRepository) => {
+export default async (
+  props: ICurrent,
+  repository?: IRepository,
+): Promise<UsecaseDemographicsResult> => {
   const api = repository?.api || fetchDemographics;
 
   const { state, result } = await api({
-    prefCode,
-    cityCode,
+    prefCode: props.prefCode,
+    cityCode: props.cityCode ?? "-",
   });
 
   if (state === "ERROR") {
@@ -34,7 +37,7 @@ export default async ({ prefCode, cityCode = "-" }: ICurrent, repository?: IRepo
       return {
         date: population.year,
         values: {
-          [prefCode]: population.value,
+          [props.prefCode]: population.value,
         },
       };
     }),
