@@ -2,10 +2,11 @@ import { ReactNode } from "react";
 
 export interface LineChartContextProviderProps {
   children: ReactNode | ReactNode[];
+  context?: Chart2DState;
 }
 
 export interface Data {
-  date: string | number;
+  label: string | number;
   values: { [key: string | number]: number };
 }
 
