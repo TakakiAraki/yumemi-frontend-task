@@ -1,5 +1,5 @@
 import { mockDemographics } from "~/resources/resas/mockDemographics";
-import current from "~/usecases/demographics/current";
+import current from "~/usecases/demographics/currentDemographics";
 
 describe("usecase test - demographics", () => {
   test("current test", (done) => {
