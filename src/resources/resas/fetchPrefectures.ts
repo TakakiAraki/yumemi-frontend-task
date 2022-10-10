@@ -17,6 +17,7 @@ export const fetchPrefectures = async (): Promise<PrefecturesAPIResult> => {
       },
     };
   }
+
   const result = await response.json();
   return {
     state: "SUCCESS",

@@ -1,9 +1,18 @@
 import { RESAS_API_KEY } from "~/utils/env";
 import { RequestError } from "~/errors/api/RequestError";
 import ResponseError from "~/errors/api/ResponseError";
+import { clock } from "~/utils/clock";
+import { promiseControl, waitFor } from "~/utils/promise";
 
 const BASE_URL = "https://opendata.resas-portal.go.jp";
 
+/**
+ * リクエスト数/日 10000
+ * 1秒あたりのリクエスト平均数 5
+ * @param url
+ * @param init
+ * @returns
+ */
 export const fetchResas = async (
   url: RequestInfo | URL,
   init?: RequestInit,

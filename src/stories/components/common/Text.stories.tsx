@@ -8,7 +8,7 @@ export default {
     children: {
       name: "children",
       type: "string",
-      defaultValue: "hoge",
+      defaultValue: "fuga",
     },
   },
 } as ComponentMeta<typeof Text>;
