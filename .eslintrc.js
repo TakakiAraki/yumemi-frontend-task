@@ -10,7 +10,6 @@ module.exports = {
     "prettier",
     "plugin:storybook/recommended",
   ],
-  plugins: ["@typescript-eslint"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
