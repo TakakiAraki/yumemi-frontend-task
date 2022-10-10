@@ -20,7 +20,7 @@ describe("promise control test", () => {
       const currentTime = Date.now();
       const result = currentTime - prevTime;
       // 0.9 - 1.1
-      expect(result).toBeGreaterThan(1000);
+      expect(result).toBeGreaterThanOrEqual(1000);
       expect(result).toBeLessThan(1100);
 
       done();
@@ -48,7 +48,7 @@ describe("promise control test", () => {
       await cb();
       const currentTime = Date.now();
       const result = currentTime - prevTime;
-      expect(result).toBeGreaterThan(2000);
+      expect(result).toBeGreaterThanOrEqual(2000);
       done();
     };
 
@@ -77,7 +77,7 @@ describe("promise control test", () => {
       }
       await Promise.all(promises);
       const currentTime = Date.now();
-      expect(currentTime - prevTime).toBeGreaterThan(1000);
+      expect(currentTime - prevTime).toBeGreaterThanOrEqual(1000);
     };
 
     const testing = async () => {
