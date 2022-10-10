@@ -1,0 +1,27 @@
+{
+  "id": "graph",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "edit": {
+          "target": "editting"
+        }
+      }
+    },
+    "editting": {
+      "on": {
+        "cancel": {
+          "target": "idle"
+        },
+        "save": [
+          {
+            "cond": "isValid",
+            "target": "idle"
+          },
+          {}
+        ]
+      }
+    }
+  }
+}
