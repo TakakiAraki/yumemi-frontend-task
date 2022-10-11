@@ -1,7 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import useSelectGraphState from "../selectors/useSelectGraphState";
 import { Tooltip, Line, Legend, LineChart, XAxis, YAxis, CartesianGrid } from "recharts";
 import { is } from "~/utils/Is";
+import { useMeasure } from "react-use";
 
 export interface Data {
   date: string | number;
@@ -12,13 +13,14 @@ export interface ExampleChartProps {
   data: Data[];
 }
 
-export const LineGraph = () => {
+export const LineGraph: FC = () => {
   const state = useSelectGraphState();
+  const [ref, size] = useMeasure<HTMLDivElement>();
 
   return (
-    <div>
+    <div ref={ref}>
       <LineChart
-        width={730}
+        width={size.width}
         height={400}
         data={state.data}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
