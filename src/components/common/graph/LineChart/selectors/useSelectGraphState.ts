@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { stringToHashColor } from "~/utils/color";
 import { useLineChartContext } from "../state/machine";
 
 export default () => {
@@ -7,16 +8,20 @@ export default () => {
   } = useLineChartContext();
 
   const lineProps = useMemo(() => {
-    return Object.keys(context.data[0].values).map((val) => ({
-      key: val,
-      dayaKey: `values.${val}`,
-      color: "#8884d8",
-    }));
+    return Object.keys(context.data[0].values).map((val) => {
+      const color = stringToHashColor(val + "soltingiikanji" + val);
+
+      return {
+        key: val,
+        dayaKey: `values.${val}`,
+        color: color.toRGBString(),
+      };
+    });
   }, [context.data]);
 
   return {
     data: context.data,
     lineProps: lineProps,
-    labels: context.labels,
+    labels: context.labels || {},
   };
 };
