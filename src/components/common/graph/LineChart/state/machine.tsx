@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, FC, useContext, useEffect } from "react";
 import { useActor, useInterpret } from "@xstate/react";
 import machine from "./machine.json";
 import { createMachine, InterpreterFrom } from "xstate";
@@ -33,7 +33,7 @@ export const useLineChartContext = () => {
   };
 };
 
-export const LineChartContextProvider = (props: LineChartContextProviderProps) => {
+export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
   const lineChart = useInterpret(lineChartMachine, {
     guards: { isValid },
     actions: { edit, cancel, save },
