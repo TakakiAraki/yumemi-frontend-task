@@ -5,17 +5,21 @@ import { createMachine, InterpreterFrom } from "xstate";
 import { is } from "~/utils/Is";
 import { Chart2DState, LineChartContextProviderProps } from "../intarface";
 import isValid from "./grads/isValid";
-import edit from "./actions/edit";
-import cancel from "./actions/cancel";
-import save from "./actions/save";
+import updateLabel from "./actions/updateLabel";
 
 // ref https://stately.ai/registry/editor/share/9e6176b4-73b8-4ab1-8f92-b74a0dcdb5a7
 const context: Chart2DState = {
   data: [],
+  title: "",
+  selectedLabels: [],
+  labelOrder: [],
 };
 
 const lineChartMachine = createMachine({
   ...machine,
+  ...{
+    predictableActionArguments: true,
+  },
   context,
 });
 
@@ -23,10 +27,15 @@ export const LineChartContext = createContext<{
   lineChart?: InterpreterFrom<typeof lineChartMachine>;
 }>({});
 
+export const useLineChartService = () => {
+  const service = useContext(LineChartContext).lineChart;
+  if (is.null(service)) throw new Error("");
+  return service;
+};
+
 export const useLineChartContext = () => {
-  const service = useContext(LineChartContext);
-  if (is.null(service.lineChart)) throw new Error("");
-  const [state, send] = useActor(service.lineChart);
+  const service = useLineChartService();
+  const [state, send] = useActor(service);
   return {
     state,
     send,
@@ -36,11 +45,15 @@ export const useLineChartContext = () => {
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
   const lineChart = useInterpret(lineChartMachine, {
     guards: { isValid },
-    actions: { edit, cancel, save },
     context: props.context,
+    actions: {
+      updateLabel: updateLabel.action,
+    },
   });
 
   return (
-    <LineChartContext.Provider value={{ lineChart }}>{props.children}</LineChartContext.Provider>
+    <div style={{ width: "100%", overflow: "hidden" }}>
+      <LineChartContext.Provider value={{ lineChart }}>{props.children}</LineChartContext.Provider>
+    </div>
   );
 };
