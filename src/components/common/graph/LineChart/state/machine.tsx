@@ -1,4 +1,4 @@
-import React, { createContext, FC, useContext, useEffect } from "react";
+import React, { createContext, FC, useContext } from "react";
 import { useActor, useInterpret } from "@xstate/react";
 import machine from "./machine.json";
 import { createMachine, InterpreterFrom } from "xstate";
@@ -45,14 +45,17 @@ export const useLineChartContext = () => {
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
   const lineChart = useInterpret(lineChartMachine, {
     guards: { isValid },
-    context: props.context,
+    context: {
+      ...props.context,
+      labelOrder: Object.keys(props.context?.labels || {}),
+    },
     actions: {
       updateLabel: updateLabel.action,
     },
   });
 
   return (
-    <div style={{ width: "100%", overflow: "hidden" }}>
+    <div style={{ width: "100%", overflowY: "hidden" }}>
       <LineChartContext.Provider value={{ lineChart }}>{props.children}</LineChartContext.Provider>
     </div>
   );
