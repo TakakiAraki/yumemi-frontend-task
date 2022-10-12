@@ -28,7 +28,7 @@ export const LineGraph: FC = () => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="label" />
         <YAxis />
-        {/* <Tooltip /> */}
+        <Tooltip />
         <Legend />
         {state.lineProps.map((val) => (
           <Line
@@ -36,6 +36,7 @@ export const LineGraph: FC = () => {
             dataKey={val.dayaKey}
             stroke={val.color}
             key={val.key}
+            isAnimationActive={false}
             name={(() => {
               if (is.null(state.labels)) return;
               return state.labels[val.key];
