@@ -1,27 +1,23 @@
-import { useMemo } from "react";
+import { useSelector } from "@xstate/react";
 import { stringToHashColor } from "~/utils/color";
-import { useLineChartContext } from "../state/machine";
+import { useLineChartService } from "../state/machine";
 
 export default () => {
-  const {
-    state: { context },
-  } = useLineChartContext();
-
-  const lineProps = useMemo(() => {
-    return Object.keys(context.data[0].values).map((val) => {
+  const service = useLineChartService();
+  return useSelector(service, ({ context }) => {
+    const lineProps = context.selectedLabels.map((val) => {
       const color = stringToHashColor(val + "soltingiikanji" + val);
-
       return {
         key: val,
         dayaKey: `values.${val}`,
         color: color.toRGBString(),
       };
     });
-  }, [context.data]);
 
-  return {
-    data: context.data,
-    lineProps: lineProps,
-    labels: context.labels || {},
-  };
+    return {
+      data: context.data,
+      lineProps: lineProps,
+      labels: context.labels || {},
+    };
+  });
 };
