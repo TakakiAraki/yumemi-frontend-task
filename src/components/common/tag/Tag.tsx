@@ -1,23 +1,24 @@
-import React, { FC, ReactNode } from "react";
+import clsx from "clsx";
+import React, { FC, ReactNode, useMemo } from "react";
 import { BLACK, color, WHITE } from "~/utils/color";
+import styles from "./Tag.module.scss";
 
 interface TagProps {
   color: string;
   children: ReactNode | ReactNode[] | string;
+  disabled?: boolean;
+  cursor?: boolean;
   onClick?: () => void;
 }
 
 export const Tag: FC<TagProps> = (props) => {
   return (
     <div
+      className={clsx(styles["tag-wrap"], { [styles["-cursor"]]: props.cursor })}
       style={{
-        display: "inline-block",
-        margin: 4,
-        borderRadius: 4,
         backgroundColor: props.color,
         color: color(props.color).futhest([BLACK, WHITE]).toRGBString(),
-        fontWeight: "bold",
-        padding: 4,
+        opacity: props.disabled ? 0.3 : 1.0,
       }}
       onClick={props.onClick}
     >
