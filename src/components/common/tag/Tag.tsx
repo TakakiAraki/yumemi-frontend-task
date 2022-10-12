@@ -8,6 +8,7 @@ interface TagProps {
   children: ReactNode | ReactNode[] | string;
   disabled?: boolean;
   cursor?: boolean;
+  width?: number;
   onClick?: () => void;
 }
 
@@ -16,6 +17,7 @@ export const Tag: FC<TagProps> = (props) => {
     <div
       className={clsx(styles["tag-wrap"], { [styles["-cursor"]]: props.cursor })}
       style={{
+        width: props.width,
         backgroundColor: props.color,
         color: color(props.color).futhest([BLACK, WHITE]).toRGBString(),
         opacity: props.disabled ? 0.3 : 1.0,

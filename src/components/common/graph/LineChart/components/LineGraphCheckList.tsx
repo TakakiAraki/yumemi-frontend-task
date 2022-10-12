@@ -22,8 +22,16 @@ const CheckList = (props: {
     }
   }, [props.id, props.disabled]);
   return (
-    <Tag key={props.id} color={props.color} onClick={cb} disabled={props.disabled} cursor>
-      {props.name}
+    <Tag
+      key={props.id}
+      color={props.color}
+      onClick={cb}
+      disabled={props.disabled}
+      cursor
+      width={56}
+    >
+      {/* スペース空いてるの懐かしい感じがして良いね！ */}
+      {props.name.length === 3 ? props.name.split("").join(" ") : props.name}
     </Tag>
   );
 };

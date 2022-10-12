@@ -18,6 +18,7 @@ $switch-color: var(--accordion-switch-color, rgba(255, 255, 255, 1));
   }
 
   &.-open {
+    box-sizing: content-box;
     padding-bottom: $offset-hegiht;
   }
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { Text } from "~/components/common/text/Text";
+import { is } from "~/utils/Is";
 import useSelectGraphLabelTitle from "../selectors/useSelectGraphLabelTitle";
 
 export const LineTitle = () => {
   const title = useSelectGraphLabelTitle();
-  return <Text type="heading-2">{title}</Text>;
+  if (is.null(title)) return null;
+  return <Text type="text">{title}</Text>;
 };

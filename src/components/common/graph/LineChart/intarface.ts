@@ -13,6 +13,7 @@ export interface Data {
 export interface Chart2DState {
   data: Data[];
   title?: string;
+  description?: string;
   labels?: { [key: string | number]: string };
   selectedLabels?: string[];
   labelOrder?: string[];
