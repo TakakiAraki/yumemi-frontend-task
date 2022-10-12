@@ -1,7 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { Tag } from "~/components/common/tag/Tag";
 import useSelectGraphLabelList from "../selectors/useSelectGraphLabelList";
 import updateLabel from "../state/actions/updateLabel";
+import updateLabelOrder from "../state/actions/updateLabelOrder";
 import { useLineChartContext } from "../state/machine";
 import styles from "./LineGraphCheckList.module.scss";
 
@@ -27,11 +28,11 @@ const CheckList = (props: {
   );
 };
 
-// chrome のタブに従って、マウスがタブ外に出るとソートを実施し、左上に詰めても良さそう。
-
+// TODO: chrome のタブに従って、マウスがタブ外に出るとソートを実施し、左上に詰めて、アニメーションを行うと良さそうだが、工数が足りない
 export const LineGraphCheckList = () => {
   const labelList = useSelectGraphLabelList();
   const lineChart = useLineChartContext();
+  const timeoutId = useRef(0);
 
   const handleSelect = useCallback((labelId: string) => {
     lineChart.send(updateLabel.create({ type: "addLabel", labelId }));
@@ -41,15 +42,29 @@ export const LineGraphCheckList = () => {
     lineChart.send(updateLabel.create({ type: "removeLabel", labelId }));
   }, []);
 
+  const updateOrder = useCallback(() => {
+    timeoutId.current = window.setTimeout(() => {
+      lineChart.send(updateLabelOrder.create({ type: "updateOrder" }));
+    }, 200);
+  }, []);
+
+  const resetOrder = useCallback(() => {
+    window.clearTimeout(timeoutId.current);
+  }, []);
+
   return (
-    <div className={styles["linegraph-checklist"]}>
+    <div
+      className={styles["linegraph-checklist"]}
+      onMouseLeave={updateOrder}
+      onMouseEnter={resetOrder}
+    >
       {labelList.labels.map((value) => (
         <CheckList
           key={value.id}
           {...value}
           onClickSelected={handleSelect}
           onClickRemove={handleRemove}
-          disabled={!labelList.selectedLabels.includes(value.id)}
+          disabled={!labelList.selectedLabels?.includes(value.id)}
         />
       ))}
     </div>

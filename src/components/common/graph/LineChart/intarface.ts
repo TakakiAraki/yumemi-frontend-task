@@ -14,8 +14,8 @@ export interface Chart2DState {
   data: Data[];
   title?: string;
   labels?: { [key: string | number]: string };
-  selectedLabels: string[];
-  labelOrder: string[];
+  selectedLabels?: string[];
+  labelOrder?: string[];
 }
 
 export type Chart2DAction<Payload extends { type: string }> = {

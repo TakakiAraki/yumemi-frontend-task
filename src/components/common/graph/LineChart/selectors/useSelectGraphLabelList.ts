@@ -8,7 +8,7 @@ export default () => {
   return useSelector(service, ({ context }) => {
     return {
       selectedLabels: context.selectedLabels,
-      labels: Object.keys(context.data[0]?.values || {}).map((val) => ({
+      labels: (context.labelOrder || []).map((val) => ({
         id: val,
         name: is.notNull(context.labels) ? context.labels[val] : val,
         color: stringToHashColor(val + "soltingiikanji" + val).toRGBString(),

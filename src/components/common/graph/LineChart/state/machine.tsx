@@ -1,11 +1,12 @@
 import React, { createContext, FC, useContext } from "react";
 import { useActor, useInterpret } from "@xstate/react";
-import machine from "./machine.json";
+import data from "./data";
 import { createMachine, InterpreterFrom } from "xstate";
 import { is } from "~/utils/Is";
 import { Chart2DState, LineChartContextProviderProps } from "../intarface";
 import isValid from "./grads/isValid";
 import updateLabel from "./actions/updateLabel";
+import updateLabelOrder from "./actions/updateLabelOrder";
 
 // ref https://stately.ai/registry/editor/share/9e6176b4-73b8-4ab1-8f92-b74a0dcdb5a7
 const context: Chart2DState = {
@@ -16,7 +17,7 @@ const context: Chart2DState = {
 };
 
 const lineChartMachine = createMachine({
-  ...machine,
+  ...data,
   ...{
     predictableActionArguments: true,
   },
@@ -50,13 +51,12 @@ export const LineChartContextProvider: FC<LineChartContextProviderProps> = (prop
       labelOrder: Object.keys(props.context?.labels || {}),
     },
     actions: {
+      updateLabelOrder: updateLabelOrder.action,
       updateLabel: updateLabel.action,
     },
   });
 
   return (
-    <div style={{ width: "100%", overflowY: "hidden" }}>
-      <LineChartContext.Provider value={{ lineChart }}>{props.children}</LineChartContext.Provider>
-    </div>
+    <LineChartContext.Provider value={{ lineChart }}>{props.children}</LineChartContext.Provider>
   );
 };

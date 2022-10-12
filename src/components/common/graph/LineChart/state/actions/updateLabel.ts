@@ -4,15 +4,15 @@ export default {
   action: (context, payload) => {
     switch (payload.type) {
       case "addLabel":
-        context.selectedLabels = [...context.selectedLabels, payload.labelId];
+        context.selectedLabels = [...(context.selectedLabels || []), payload.labelId];
         break;
       case "removeLabel":
-        context.selectedLabels = context.selectedLabels.filter((val) => val !== payload.labelId);
+        context.selectedLabels = context.selectedLabels?.filter((val) => val !== payload.labelId);
         break;
     }
   },
   create: (payload) => payload,
 } as Chart2DAction<{
-  type: "addLabel" | "removeLabel";
+  type: "addLabel" | "removeLabel" | "updateLabel";
   labelId: string;
 }>;
