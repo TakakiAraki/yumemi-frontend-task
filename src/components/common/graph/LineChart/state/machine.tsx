@@ -4,7 +4,6 @@ import data from "./data";
 import { createMachine, InterpreterFrom } from "xstate";
 import { is } from "~/utils/Is";
 import { Chart2DState, LineChartContextProviderProps } from "../intarface";
-import isValid from "./grads/isValid";
 import updateLabel from "./actions/updateLabel";
 import updateLabelOrder from "./actions/updateLabelOrder";
 
@@ -46,7 +45,6 @@ export const useLineChartContext = () => {
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
   updateLabelOrder.type;
   const lineChart = useInterpret(lineChartMachine, {
-    guards: { isValid },
     context: {
       ...props.context,
       labelOrder: Object.keys(props.context?.labels || {}),
