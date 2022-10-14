@@ -27,6 +27,8 @@ jobs:
         run: yarn lint:ci
       - name: Run Jest
         run: yarn test
+      - name: Run TypeCheck
+        run: yarn tsc
 
       # TODO: カバレッジをアップロードできるようにする https://docs.github.com/ja/actions/using-workflows/storing-workflow-data-as-artifacts
       # - name: Upload test coverage artifact

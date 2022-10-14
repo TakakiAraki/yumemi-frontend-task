@@ -15,9 +15,9 @@ export default () => {
     });
 
     return {
-      data: context.data,
+      data: context.meta.data,
       lineProps: lineProps,
-      labels: context.labels || {},
+      labels: context.meta.labels || {},
     };
   });
 };
