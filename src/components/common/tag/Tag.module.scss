@@ -1,0 +1,12 @@
+.tag-wrap {
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 4px 8px;
+
+  &.-cursor {
+    cursor: pointer;
+    user-select: none;
+  }
+}
