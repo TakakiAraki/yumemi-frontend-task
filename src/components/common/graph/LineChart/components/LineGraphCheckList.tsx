@@ -43,16 +43,16 @@ export const LineGraphCheckList = () => {
   const timeoutId = useRef(0);
 
   const handleSelect = useCallback((labelId: string) => {
-    lineChart.send(updateLabel.create({ type: "addLabel", labelId }));
+    lineChart.send(updateLabel.add.update(labelId));
   }, []);
 
   const handleRemove = useCallback((labelId: string) => {
-    lineChart.send(updateLabel.create({ type: "removeLabel", labelId }));
+    lineChart.send(updateLabel.remove.update(labelId));
   }, []);
 
   const updateOrder = useCallback(() => {
     timeoutId.current = window.setTimeout(() => {
-      lineChart.send(updateLabelOrder.create({ type: "updateOrder" }));
+      lineChart.send(updateLabelOrder.update({}));
     }, 200);
   }, []);
 

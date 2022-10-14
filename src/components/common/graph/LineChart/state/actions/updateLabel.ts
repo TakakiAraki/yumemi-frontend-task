@@ -1,18 +1,23 @@
-import { Chart2DAction } from "../../intarface";
+import { Chart2DState } from "../../intarface";
+import { createUpdater } from "@xstate/immer";
 
 export default {
-  action: (context, payload) => {
-    switch (payload.type) {
-      case "addLabel":
-        context.selectedLabels = [...(context.selectedLabels || []), payload.labelId];
-        break;
-      case "removeLabel":
-        context.selectedLabels = context.selectedLabels?.filter((val) => val !== payload.labelId);
-        break;
+  add: createUpdater<
+    Chart2DState,
+    {
+      type: "addLabel" | "removeLabel";
+      input: string;
     }
-  },
-  create: (payload) => payload,
-} as Chart2DAction<{
-  type: "addLabel" | "removeLabel" | "updateLabel";
-  labelId: string;
-}>;
+  >("addLabel", (context: Chart2DState, event) => {
+    context.selectedLabels = [...(context.selectedLabels || []), event.input];
+  }),
+  remove: createUpdater<
+    Chart2DState,
+    {
+      type: "removeLabel";
+      input: string;
+    }
+  >("removeLabel", (context: Chart2DState, event) => {
+    context.selectedLabels = context.selectedLabels?.filter((val) => val !== event.input);
+  }),
+};

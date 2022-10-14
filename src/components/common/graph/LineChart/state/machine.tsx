@@ -44,6 +44,7 @@ export const useLineChartContext = () => {
 };
 
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
+  updateLabelOrder.type;
   const lineChart = useInterpret(lineChartMachine, {
     guards: { isValid },
     context: {
@@ -52,7 +53,8 @@ export const LineChartContextProvider: FC<LineChartContextProviderProps> = (prop
     },
     actions: {
       updateLabelOrder: updateLabelOrder.action,
-      updateLabel: updateLabel.action,
+      addLabel: updateLabel.add.action,
+      removeLabel: updateLabel.remove.action,
     },
   });
 

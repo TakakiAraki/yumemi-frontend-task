@@ -10,10 +10,10 @@ export default {
           target: "editting",
         },
         addLabel: {
-          actions: "updateLabel",
+          actions: "addLabel",
         },
         removeLabel: {
-          actions: "updateLabel",
+          actions: "removeLabel",
         },
         updateOrder: {
           actions: "updateLabelOrder",
