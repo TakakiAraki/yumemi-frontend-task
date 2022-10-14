@@ -37,10 +37,14 @@ const index = (props: IndexProps) => {
 
   const values = {
     title: "hogehoge",
+    description: "hogehoge",
+    selectedLabels: ["2", "3", "4"],
+  };
+
+  const meta = {
     data,
     labels,
-    selectedLabels: ["2", "3", "4"],
-    description: "hogehoge",
+    labelOrder: [],
   };
 
   return (
@@ -51,12 +55,24 @@ const index = (props: IndexProps) => {
           <Text type="heading-2">人口マップ</Text>
           <div style={{ display: "flex" }}>
             <LineChartContextProvider
-              context={{ ...values, title: "過疎化マップ", description: "hoge" }}
+              context={{
+                id: Math.random().toString(),
+                meta: {
+                  ...meta,
+                },
+                ...values,
+              }}
             >
               <BaseLineLayout />
             </LineChartContextProvider>
             <LineChartContextProvider
-              context={{ ...values, title: "都会マップ", description: "hoge" }}
+              context={{
+                id: Math.random().toString(),
+                meta: {
+                  ...meta,
+                },
+                ...values,
+              }}
             >
               <BaseLineLayout />
             </LineChartContextProvider>
@@ -66,17 +82,35 @@ const index = (props: IndexProps) => {
           <Text type="heading-2">ローカルマップ</Text>
           <div style={{ display: "flex" }}>
             <LineChartContextProvider
-              context={{ ...values, title: "過疎化マップ", description: "hoge" }}
+              context={{
+                id: Math.random().toString(),
+                meta: {
+                  ...meta,
+                },
+                ...values,
+              }}
             >
               <BaseLineLayout />
             </LineChartContextProvider>
             <LineChartContextProvider
-              context={{ ...values, title: "過疎化マップ", description: "hoge" }}
+              context={{
+                id: Math.random().toString(),
+                meta: {
+                  ...meta,
+                },
+                ...values,
+              }}
             >
               <BaseLineLayout />
             </LineChartContextProvider>
             <LineChartContextProvider
-              context={{ ...values, title: "過疎化マップ", description: "hoge" }}
+              context={{
+                id: Math.random().toString(),
+                meta: {
+                  ...meta,
+                },
+                ...values,
+              }}
             >
               <BaseLineLayout />
             </LineChartContextProvider>

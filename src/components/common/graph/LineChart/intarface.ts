@@ -11,12 +11,15 @@ export interface Data {
 }
 
 export interface Chart2DState {
-  data: Data[];
+  id: string;
   title?: string;
   description?: string;
-  labels?: { [key: string | number]: string };
   selectedLabels?: string[];
-  labelOrder?: string[];
+  meta: {
+    data: Data[];
+    labels?: { [key: string]: string };
+    labelOrder?: string[];
+  };
 }
 
 export type Chart2DAction<Payload extends { type: string }> = {

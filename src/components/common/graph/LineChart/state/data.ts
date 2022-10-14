@@ -3,7 +3,7 @@ export default {
   initial: "idle",
   states: {
     idle: {
-      entry: "updateLabelOrder",
+      entry: ["updateLabelOrder"],
       on: {
         edit: {
           actions: "toEdit",

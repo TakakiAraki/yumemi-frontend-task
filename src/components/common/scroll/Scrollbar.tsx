@@ -19,6 +19,7 @@ const Scroll = (props: ScrollProps) => {
       scrollInstance.destroy();
     };
   }, []);
+
   return (
     <div
       className={props.className}
