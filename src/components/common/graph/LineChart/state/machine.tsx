@@ -9,10 +9,16 @@ import updateLabelOrder from "./actions/updateLabelOrder";
 
 // ref https://stately.ai/registry/editor/share/9e6176b4-73b8-4ab1-8f92-b74a0dcdb5a7
 const context: Chart2DState = {
-  data: [],
+  // UserData
+  id: "",
   title: "",
   selectedLabels: [],
-  labelOrder: [],
+  meta: {
+    // TODO: Contextを分けたい
+    data: [],
+    labels: {},
+    labelOrder: [],
+  },
 };
 
 const lineChartMachine = createMachine({
@@ -43,11 +49,14 @@ export const useLineChartContext = () => {
 };
 
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
-  updateLabelOrder.type;
   const lineChart = useInterpret(lineChartMachine, {
     context: {
       ...props.context,
-      labelOrder: Object.keys(props.context?.labels || {}),
+      meta: {
+        data: [],
+        labelOrder: Object.keys(props.context?.meta.labels || {}),
+        ...props.context?.meta,
+      },
     },
     actions: {
       updateLabelOrder: updateLabelOrder.action,
