@@ -2,6 +2,7 @@ import React from "react";
 import PerfectScrollbar from "perfect-scrollbar";
 import { ReactNode, useEffect, useRef } from "react";
 import { is } from "~/utils/Is";
+import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 export interface ScrollProps {
   children: ReactNode | ReactNode[] | string;
