@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useMemo, useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import styles from "./Accordion.module.scss";
 import { useMeasure } from "react-use";
 import clsx from "clsx";
