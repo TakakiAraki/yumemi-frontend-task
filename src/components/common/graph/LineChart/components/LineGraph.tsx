@@ -24,7 +24,7 @@ export const LineGraph: FC<LineGraphProps> = (props) => {
         <XAxis dataKey="label" />
         <YAxis />
         <Legend />
-        {state.lineProps.map((val) => (
+        {(state.lineProps || []).map((val) => (
           <Line
             type="monotone"
             dataKey={val.dayaKey}
