@@ -8,4 +8,6 @@ export const is = {
   client: typeof process === "undefined",
   server: typeof window === "undefined",
   array: Array.isArray,
+  isPC: () => window.matchMedia("(max-width: 1024px)").matches,
+  isSP: () => !window.matchMedia("(max-width: 1024px)").matches,
 };
