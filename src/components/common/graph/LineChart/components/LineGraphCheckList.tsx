@@ -21,6 +21,7 @@ const CheckList = (props: {
       return props.onClickRemove(props.id);
     }
   }, [props.id, props.disabled]);
+
   return (
     <Tag
       key={props.id}
@@ -36,7 +37,9 @@ const CheckList = (props: {
   );
 };
 
-// TODO: chrome のタブに従って、マウスがタブ外に出るとソートを実施し、左上に詰めて、アニメーションを行うと良さそうだが、工数が足りない
+// TODO
+// chrome のタブに従って、マウスがタブ外に出るとソートを実施し、左上に詰めて、アニメーションを行うと良さそうだが、工数が足りない
+
 export const LineGraphCheckList = () => {
   const labelList = useSelectGraphLabelList();
   const lineChart = useLineChartContext();

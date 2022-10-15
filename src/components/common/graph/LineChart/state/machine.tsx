@@ -54,8 +54,8 @@ export const LineChartContextProvider: FC<LineChartContextProviderProps> = (prop
       ...props.context,
       meta: {
         data: [],
-        labelOrder: Object.keys(props.context?.meta.labels || {}),
         ...props.context?.meta,
+        labelOrder: Object.keys(props.context?.meta.labels || {}),
       },
     },
     actions: {
