@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wait for test string to hash color 1`] = `
+{
+  "B": 93,
+  "G": 28,
+  "R": 7,
+}
+`;
+
+exports[`wait for test string to hash color 2`] = `
+{
+  "B": 93,
+  "G": 28,
+  "R": 8,
+}
+`;
+
+exports[`wait for test string to hash color 3`] = `
+{
+  "B": 205,
+  "G": 144,
+  "R": 140,
+}
+`;
+
+exports[`wait for test string to hash color 4`] = `
+{
+  "B": 205,
+  "G": 144,
+  "R": 141,
+}
+`;
+
+exports[`wait for test string to hash color 5`] = `
+{
+  "B": 205,
+  "G": 144,
+  "R": 142,
+}
+`;
+
+exports[`wait for test throws test 1`] = `"R is not a number. color: zzz"`;
+
+exports[`wait for test throws test 2`] = `"R is not a number. color: ;;;;;;;;"`;
+
+exports[`wait for test throws test 3`] = `"変換対象のstringが不正なフォーマットです"`;
+
+exports[`wait for test throws test 4`] = `"変換対象のstringが不正なフォーマットです"`;

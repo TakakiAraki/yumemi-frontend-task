@@ -1,4 +1,4 @@
-import { color } from "~/utils/color";
+import { color, stringToHashColor } from "~/utils/color";
 
 describe("wait for test", () => {
   const black = color({
@@ -26,5 +26,34 @@ describe("wait for test", () => {
 
   test("closest test", () => {
     expect(black.futhest([gray.value, white.value]).value).toMatchObject(white.value);
+  });
+
+  test("color convert", () => {
+    expect(color("#000000").toRGBString()).toBe("#000000");
+    expect(color("#FFFFFF").toRGBString().toUpperCase()).toBe("#FFFFFF");
+
+    // R
+    expect(color("#AAFFFF").toRGBString().toUpperCase()).toBe("#AAFFFF");
+
+    // G
+    expect(color("#FFAAFF").toRGBString().toUpperCase()).toBe("#FFAAFF");
+
+    // B
+    expect(color("#FFFFAA").toRGBString().toUpperCase()).toBe("#FFFFAA");
+  });
+
+  test("throws test", () => {
+    expect(() => color("zzz")).toThrowErrorMatchingSnapshot();
+    expect(() => color(";;;;;;;;")).toThrowErrorMatchingSnapshot();
+    expect(() => color(";")).toThrowErrorMatchingSnapshot();
+    expect(() => color("")).toThrowErrorMatchingSnapshot();
+  });
+
+  test("string to hash color", () => {
+    expect(stringToHashColor("example1").value).toMatchSnapshot();
+    expect(stringToHashColor("example2").value).toMatchSnapshot();
+    expect(stringToHashColor("hoge1").value).toMatchSnapshot();
+    expect(stringToHashColor("hoge2").value).toMatchSnapshot();
+    expect(stringToHashColor("hoge3").value).toMatchSnapshot();
   });
 });
