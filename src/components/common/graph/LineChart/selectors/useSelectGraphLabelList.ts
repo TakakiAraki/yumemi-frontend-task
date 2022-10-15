@@ -6,6 +6,7 @@ import { useLineChartService } from "../state/machine";
 export default () => {
   const service = useLineChartService();
   return useSelector(service, ({ context }) => {
+    context.meta.labels;
     return {
       selectedLabels: context.selectedLabels,
       labels: (context.meta.labelOrder || []).map((val) => ({
