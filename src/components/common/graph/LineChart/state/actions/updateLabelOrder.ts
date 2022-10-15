@@ -10,15 +10,17 @@ export default createUpdater<
   }
 >("updateOrder", (context: Chart2DState, _event) => {
   if (context.selectedLabels?.length === 0 || is.null(context.selectedLabels)) {
-    context.labelOrder = context.labelOrder?.sort((a, b) => (Number(a) > Number(b) ? 1 : -1));
+    context.meta.labelOrder = context.meta.labelOrder?.sort((a, b) =>
+      Number(a) > Number(b) ? 1 : -1,
+    );
     return;
   }
 
-  context.labelOrder = [
-    ...(context.labelOrder || [])
+  context.meta.labelOrder = [
+    ...(context.meta.labelOrder || [])
       .filter((val) => context.selectedLabels?.includes(val))
       .sort((a, b) => (Number(a) > Number(b) ? 1 : -1)),
-    ...(context.labelOrder || [])
+    ...(context.meta.labelOrder || [])
       .filter((val) => !context.selectedLabels?.includes(val))
       .sort((a, b) => (Number(a) > Number(b) ? 1 : -1)),
   ];

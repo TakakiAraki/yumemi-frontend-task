@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, ReactNode, useMemo } from "react";
+import React, { FC, ReactNode } from "react";
 import { BLACK, color, WHITE } from "~/utils/color";
 import styles from "./Tag.module.scss";
 

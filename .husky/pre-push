@@ -3,3 +3,4 @@
 
 yarn run fix:js
 yarn run lint:js
+yarn run tsc
