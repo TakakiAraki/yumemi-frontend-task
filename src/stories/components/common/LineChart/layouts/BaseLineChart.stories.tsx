@@ -4,7 +4,6 @@ import { BaseLineLayout } from "~/components/common/graph/LineChart/layouts/Base
 import { Text } from "~/components/common/text/Text";
 import { LineChartContextProvider } from "~/components/common/graph/LineChart/state/machine";
 import { LineChartContextProviderProps } from "~/components/common/graph/LineChart/intarface";
-import { LineDebug } from "~/components/common/graph/LineChart/components/Debug";
 
 export default {
   component: LineChartContextProvider,
