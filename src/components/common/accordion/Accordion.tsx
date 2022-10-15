@@ -6,11 +6,12 @@ import clsx from "clsx";
 export interface AccordionProps {
   height: number | string;
   children: ReactNode | ReactNode[] | string;
+  opened?: boolean;
 }
 
 export const Accordion: FC<AccordionProps> = (props) => {
   const [ref, size] = useMeasure<HTMLDivElement>();
-  const [open, toggle] = useState(false);
+  const [open, toggle] = useState(props.opened ?? false);
   const wrap = clsx(styles["accordion-wrap"], {
     [styles["-open"]]: open,
     [styles["-close"]]: !open,

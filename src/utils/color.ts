@@ -6,27 +6,42 @@ interface Color {
   G: number; // 255
   B: number; // 255
 }
+const validationColor = (color: Color, code: string) => {
+  if (Number.isNaN(color.R)) throw new Error(`R is not a number. color: ${code}`);
+  if (Number.isNaN(color.G)) throw new Error(`G is not a number. color: ${code}`);
+  if (Number.isNaN(color.B)) throw new Error(`B is not a number. color: ${code}`);
+  return;
+};
 const parseColor = (str: string): Color => {
   const target = str.replace("#", "");
   switch (target.length) {
-    case 8:
-      return {
+    case 8: {
+      const color = {
         R: parseInt(target[0] + target[1], 16),
         G: parseInt(target[2] + target[3], 16),
         B: parseInt(target[4] + target[5], 16),
       };
-    case 6:
-      return {
+      validationColor(color, str);
+      return color;
+    }
+    case 6: {
+      const color = {
         R: parseInt(target[0] + target[1], 16),
         G: parseInt(target[2] + target[3], 16),
         B: parseInt(target[4] + target[5], 16),
       };
-    case 3:
-      return {
+      validationColor(color, str);
+      return color;
+    }
+    case 3: {
+      const color = {
         R: parseInt(target[0] + target[0], 16),
         G: parseInt(target[1] + target[1], 16),
         B: parseInt(target[2] + target[2], 16),
       };
+      validationColor(color, str);
+      return color;
+    }
     default:
       throw new Error("変換対象のstringが不正なフォーマットです");
   }
