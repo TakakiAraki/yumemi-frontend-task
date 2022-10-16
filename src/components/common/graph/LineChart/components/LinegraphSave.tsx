@@ -7,7 +7,16 @@ export const LinegraphSave = () => {
   const lineChart = useLineChartContext();
 
   return (
-    <Button onClick={() => lineChart.send({ type: "save" })}>
+    <Button
+      onClick={async () => {
+        const isSave = await window.confirm("保存しますか");
+
+        if (isSave) {
+          lineChart.send({ type: "save" });
+          await window.alert("保存しました");
+        }
+      }}
+    >
       <Text type="mini" color="reverse">
         <b>保存</b>
       </Text>
