@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { BaseLineList } from "~/components/graphRecord/layout/BaseLineList";
+import { BaseLineList } from "~/components/graphRecord/layout/BaseChartList";
 import styles from "./ContentsViewer.module.scss";
 import { FC } from "react";
 import {
@@ -7,19 +7,19 @@ import {
   Chart2DUserData,
   GraphGroup,
 } from "~/components/common/graph/LineChart/intarface";
+import { is } from "~/utils/Is";
+import { IndexProps } from "..";
 
-type GraphType = {
-  demographics: Chart2DMetaData;
-};
-
-const validatinGraphTypes = (key: string, graphType: GraphType): Chart2DMetaData => {
+const validatinGraphTypes = (key: string, graphType: IndexProps): Chart2DMetaData => {
   if (key === "demographics") {
-    return graphType[key];
+    const target = graphType[key];
+    if (is.null(target)) throw new Error(`グラフのメタデータが設定されていません ${target}`);
+    return target;
   }
   throw new Error(`グラフタイプが存在しません ${key}`);
 };
 const ContentsViewer: FC<{
-  meta: GraphType;
+  meta: IndexProps;
 }> = ({ meta }) => {
   const data: Chart2DUserData[] = useMemo(
     () => [
@@ -58,7 +58,7 @@ const ContentsViewer: FC<{
   const dataGroup: GraphGroup[] = useMemo(
     () => [
       {
-        id: "hogehoge2",
+        id: "hogehoge1",
         title: "人口マップ",
         userDataId: ["hogehoge", "2hogehoge", "3hogehoge"],
       },

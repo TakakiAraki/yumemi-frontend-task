@@ -28,6 +28,7 @@ export interface Chart2DUserData {
   description?: string;
   selectedLabels?: string[];
 }
+
 export interface Chart2DState {
   userData: Chart2DUserData;
   meta: Chart2DMetaData;

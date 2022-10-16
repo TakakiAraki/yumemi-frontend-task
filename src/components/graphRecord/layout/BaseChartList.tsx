@@ -5,7 +5,7 @@ import { LineChartContextProvider } from "~/components/common/graph/LineChart/st
 import Scroll from "~/components/common/scroll/Scrollbar";
 import { Text } from "~/components/common/text/Text";
 import { useIsSP } from "~/uses/useIsSP";
-import styles from "./BaseLineList.module.scss";
+import styles from "./BaseChartList.module.scss";
 
 export interface BaseLineListProps {
   title: string;

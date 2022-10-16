@@ -2,12 +2,13 @@ import * as React from "react";
 import { Text } from "~/components/common/text/Text";
 import Scroll from "../common/scroll/Scrollbar";
 import styles from "./index.module.scss";
-import { useMemo } from "react";
-import ContentsViewer from "./components/ContentsViewer";
 import { Chart2DMetaData } from "../common/graph/LineChart/intarface";
+import dynamic from "next/dynamic";
+
+const ContentsViewer = dynamic(() => import("./components/ContentsViewer"), { ssr: false });
 
 export interface IndexProps {
-  demographics: Chart2DMetaData;
+  demographics?: Chart2DMetaData;
 }
 
 export const IndexPage = (props: IndexProps) => {
