@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import ChevronBottom from "./ChevronBottom";
 import ChevronTop from "./ChevronTop";
+import Save from "./Save";
 
 interface IconProps {
   size: number;
@@ -16,4 +17,5 @@ const IconWrap = (Component: FC<any>): FC<IconProps> => {
 export const Icon = {
   ChevronBottom: IconWrap(ChevronBottom),
   ChevronTop: IconWrap(ChevronTop),
+  Save: IconWrap(Save),
 };

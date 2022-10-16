@@ -10,13 +10,16 @@ export default {
           target: "editting",
         },
         addLabel: {
-          actions: "addLabel",
+          actions: ["addLabel", "onChange"],
         },
         removeLabel: {
-          actions: "removeLabel",
+          actions: ["removeLabel", "onChange"],
         },
         updateOrder: {
-          actions: "updateLabelOrder",
+          actions: ["updateLabelOrder", "onChange"],
+        },
+        save: {
+          actions: ["onSave"],
         },
       },
     },

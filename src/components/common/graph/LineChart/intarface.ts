@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 export interface LineChartContextProviderProps {
   children: ReactNode | ReactNode[];
   context?: Chart2DState;
+  onChange?: (state: Chart2DState) => void;
+  onSave?: (state: Chart2DState) => void;
 }
 
 export interface Data {
@@ -18,7 +20,7 @@ export interface Chart2DMetaData {
 export interface GraphGroup {
   id: string;
   title: string;
-  userDataId: string[];
+  userDataIdList: string[];
 }
 
 export interface Chart2DUserData {
