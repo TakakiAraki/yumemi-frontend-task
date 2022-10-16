@@ -7,6 +7,21 @@ import { useMeasure } from "react-use";
 export interface LineGraphProps {
   height?: number;
 }
+const formatter = new Intl.NumberFormat("ja-JP", { style: "decimal" });
+
+const numberFormatYAxis = (value: any) => {
+  if (is.integer(value)) {
+    return `${value / 10000}万人`;
+  }
+  return value;
+};
+
+const numberFormatTooltip = (value: any) => {
+  if (is.integer(value)) {
+    return `${formatter.format(value)}人`;
+  }
+  return value;
+};
 
 export const LineGraph: FC<LineGraphProps> = (props) => {
   const state = useSelectGraphState();
@@ -18,12 +33,16 @@ export const LineGraph: FC<LineGraphProps> = (props) => {
         width={size.width}
         height={props.height ?? 300}
         data={state.data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{ right: 35 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="1 1" />
         <XAxis dataKey="label" />
-        <YAxis />
-        <Tooltip isAnimationActive={false} />
+        <YAxis tickFormatter={numberFormatYAxis} />
+        <Tooltip
+          isAnimationActive={false}
+          position={{ x: size.width - 100, y: 0 }}
+          formatter={numberFormatTooltip}
+        />
         {(state.lineProps || []).map((val) => (
           <Line
             type="monotone"

@@ -11,6 +11,7 @@ function* loadUserData() {
   if (is.null(data)) return;
   yield put(setUserData(data.resource));
 }
+
 function* saveUserData() {
   const value: StoreState = yield select();
   yield call(storage.save, value.userData);

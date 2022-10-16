@@ -19,12 +19,12 @@ export const BaseLineLayout = () => {
         <LineTitle />
         <LinegraphSave />
       </div>
-      <Accordion height={30}>
-        <LineGraphCheckList />
-      </Accordion>
       <div style={{ height: 300 }}>
         <LineGraph height={300} />
       </div>
+      <Accordion height={30}>
+        <LineGraphCheckList />
+      </Accordion>
       <LineDescription />
     </div>
   );
