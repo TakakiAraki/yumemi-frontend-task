@@ -7,12 +7,14 @@ import { setUserData, updateUserData, UserDataState } from "../userData/slice";
 const storage = createStorage<UserDataState>("user-data-state");
 
 function* loadUserData() {
+  if (is.server) return;
   const data: UserDataState | undefined = yield call(storage.load);
   if (is.null(data)) return;
   yield put(setUserData(data.resource));
 }
 
 function* saveUserData() {
+  if (is.server) return;
   const value: StoreState = yield select();
   yield call(storage.save, value.userData);
 }
