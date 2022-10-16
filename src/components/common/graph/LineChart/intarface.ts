@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 export interface LineChartContextProviderProps {
   children: ReactNode | ReactNode[];
   context?: Chart2DState;
+  onChange?: (state: Chart2DState) => void;
+  onSave?: (state: Chart2DState) => void;
 }
 
 export interface Data {
