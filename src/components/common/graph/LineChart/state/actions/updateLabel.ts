@@ -9,7 +9,7 @@ export default {
       input: string;
     }
   >("addLabel", (context: Chart2DState, event) => {
-    context.selectedLabels = [...(context.selectedLabels || []), event.input];
+    context.userData.selectedLabels = [...(context.userData.selectedLabels || []), event.input];
   }),
   remove: createUpdater<
     Chart2DState,
@@ -18,6 +18,8 @@ export default {
       input: string;
     }
   >("removeLabel", (context: Chart2DState, event) => {
-    context.selectedLabels = context.selectedLabels?.filter((val) => val !== event.input);
+    context.userData.selectedLabels = context.userData.selectedLabels?.filter(
+      (val) => val !== event.input,
+    );
   }),
 };

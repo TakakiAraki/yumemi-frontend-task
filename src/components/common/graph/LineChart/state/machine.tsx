@@ -10,9 +10,12 @@ import updateLabelOrder from "./actions/updateLabelOrder";
 // ref https://stately.ai/registry/editor/share/9e6176b4-73b8-4ab1-8f92-b74a0dcdb5a7
 const context: Chart2DState = {
   // UserData
-  id: "",
-  title: "",
-  selectedLabels: [],
+  userData: {
+    id: "",
+    type: "",
+    title: "",
+    selectedLabels: [],
+  },
   meta: {
     // TODO: Contextを分けたい
     data: [],
@@ -51,7 +54,10 @@ export const useLineChartContext = () => {
 export const LineChartContextProvider: FC<LineChartContextProviderProps> = (props) => {
   const lineChart = useInterpret(lineChartMachine, {
     context: {
-      ...props.context,
+      userData: {
+        ...context.userData,
+        ...props.context?.userData,
+      },
       meta: {
         data: [],
         ...props.context?.meta,

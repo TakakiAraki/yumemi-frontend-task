@@ -8,7 +8,7 @@ export default () => {
   return useSelector(service, ({ context }) => {
     context.meta.labels;
     return {
-      selectedLabels: context.selectedLabels,
+      selectedLabels: context.userData.selectedLabels,
       labels: (context.meta.labelOrder || []).map((val) => ({
         id: val,
         name: is.notNull(context.meta.labels) ? context.meta.labels[val] : val,

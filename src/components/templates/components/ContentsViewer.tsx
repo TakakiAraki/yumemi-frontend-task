@@ -2,35 +2,45 @@ import * as React from "react";
 import { BaseLineList } from "~/components/graphRecord/layout/BaseLineList";
 import styles from "./ContentsViewer.module.scss";
 import { FC } from "react";
-import { Chart2DState } from "~/components/common/graph/LineChart/intarface";
+import { Chart2DMetaData, Chart2DUserData } from "~/components/common/graph/LineChart/intarface";
 
 const ContentsViewer: FC<{
-  properties: {
+  graphRows: {
+    id: string;
     title: string;
-    contents: Omit<Chart2DState, "meta">[];
+    userDataId: string[];
   }[];
-  meta: Chart2DState["meta"];
-}> = ({ properties, meta }) => {
+  userData: Chart2DUserData[];
+  meta: Chart2DMetaData;
+}> = ({ graphRows, meta, userData }) => {
   return (
     <>
       <div className={styles["content-template"]}>
-        {properties.map((val) => {
+        {graphRows.map((rows) => {
           return (
             <BaseLineList
-              key={val.title}
-              title={val.title}
-              itemList={val.contents.map((value) => {
+              key={rows.id}
+              title={rows.title}
+              itemList={rows.userDataId.map((value) => {
+                const userDataItem = userData.find((val) => val.id === value);
+                if (userDataItem == null) throw new Error(`user data is not found id[${value}]`);
                 return {
-                  ...value,
-                  id: Math.random().toString(),
-                  meta: {
-                    ...meta,
-                  },
+                  userData: userDataItem,
+                  meta: meta,
                 };
               })}
             />
           );
         })}
+
+        {JSON.stringify(graphRows)}
+        {JSON.stringify(
+          graphRows.map((rows) => {
+            return rows.userDataId.map((value) => {
+              return userData.find((val) => val.id === value);
+            });
+          }),
+        )}
       </div>
     </>
   );

@@ -1,66 +1,43 @@
 import * as React from "react";
-import { Prefectures } from "~/usecases/prefectures/interfaces";
-import { UsecaseDemographicsSuccess } from "~/usecases/demographics/interface";
 import { Text } from "~/components/common/text/Text";
 import Scroll from "../common/scroll/Scrollbar";
 import styles from "./index.module.scss";
 import { useMemo } from "react";
 import ContentsViewer from "./components/ContentsViewer";
+import { Chart2DMetaData } from "../common/graph/LineChart/intarface";
 
-// TODO propsなためコンポーネント向けにしたほうが良い。
 export interface IndexProps {
-  prefectures: Prefectures;
-  demographics: UsecaseDemographicsSuccess;
+  demographics: Chart2DMetaData;
 }
 
 export const IndexPage = (props: IndexProps) => {
-  const labels = React.useMemo(() => {
-    return props.prefectures.result.reduce((prev, next) => {
-      return {
-        [next.prefCode]: next.prefName,
-        ...prev,
-      };
-    }, {});
-  }, [props.prefectures]);
-
-  const data = useMemo(
-    () =>
-      props.demographics.map((val) => ({
-        label: val.date,
-        values: val.values,
-      })),
-    [props.demographics],
-  );
-
   // mock properties
-  const region = useMemo(
+  const data = useMemo(
     () => [
       {
         id: "hogehoge",
+        type: "demographics",
         title: "都会の人口推移",
         description: "都会の人口の推移を表示したマップ",
-        selectedLabels: ["13", "27", "30", "40"],
+        selectedLabels: ["13", "27", "40"],
       },
       {
         id: "2hogehoge",
+        type: "demographics",
         title: "関西圏マップ",
         description: "関西の人口の推移を表示したマップ",
         selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
       },
       {
         id: "3hogehoge",
+        type: "demographics",
         title: "四国マップ",
         description: "四国の人口の推移を表示したマップ",
         selectedLabels: ["36", "37", "38", "39"],
       },
-    ],
-    [],
-  );
-
-  const place = useMemo(
-    () => [
       {
-        id: "3hogehoge",
+        id: "4hogehoge",
+        type: "demographics",
         title: "関西圏マップ",
         description: "関西の人口の推移を表示したマップ",
         selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
@@ -72,23 +49,16 @@ export const IndexPage = (props: IndexProps) => {
   const properties = useMemo(
     () => [
       {
+        id: "hogehoge2",
         title: "人口マップ",
-        contents: region,
+        userDataId: ["hogehoge", "2hogehoge", "3hogehoge"],
       },
       {
+        id: "hogehoge3",
         title: "人口マップ2",
-        contents: place,
+        userDataId: ["4hogehoge"],
       },
     ],
-    [],
-  );
-
-  const meta = useMemo(
-    () => ({
-      data,
-      labels,
-      labelOrder: [],
-    }),
     [],
   );
 
@@ -105,7 +75,7 @@ export const IndexPage = (props: IndexProps) => {
 
       <article className={styles["content"]}>
         <Scroll height="100%" width="100%">
-          <ContentsViewer properties={properties} meta={meta} />
+          <ContentsViewer graphRows={properties} userData={data} meta={props.demographics} />
         </Scroll>
       </article>
     </div>

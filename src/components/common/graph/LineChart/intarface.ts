@@ -10,16 +10,22 @@ export interface Data {
   values: { [key: string | number]: number };
 }
 
-export interface Chart2DState {
+export interface Chart2DMetaData {
+  data: Data[];
+  labels?: { [key: string]: string };
+  labelOrder?: string[];
+}
+
+export interface Chart2DUserData {
   id: string;
+  type: string;
   title?: string;
   description?: string;
   selectedLabels?: string[];
-  meta: {
-    data: Data[];
-    labels?: { [key: string]: string };
-    labelOrder?: string[];
-  };
+}
+export interface Chart2DState {
+  userData: Chart2DUserData;
+  meta: Chart2DMetaData;
 }
 
 export type Chart2DAction<Payload extends { type: string }> = {
