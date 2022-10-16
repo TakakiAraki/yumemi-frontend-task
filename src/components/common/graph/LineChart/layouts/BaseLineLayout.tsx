@@ -3,6 +3,7 @@ import React from "react";
 import { Accordion } from "~/components/common/accordion/Accordion";
 import { LineDescription } from "../components/LineDescription";
 import { LineGraphCheckList } from "../components/LineGraphCheckList";
+import { LinegraphSave } from "../components/LinegraphSave";
 import { LineTitle } from "../components/LinegraphTitle";
 import style from "./BaseLineLayout.module.scss";
 
@@ -14,8 +15,11 @@ const LineGraph = dynamic(
 export const BaseLineLayout = () => {
   return (
     <div className={style["baseline-layout"]}>
-      <LineTitle />
-      <Accordion height={35}>
+      <div className={style["header"]}>
+        <LineTitle />
+        <LinegraphSave />
+      </div>
+      <Accordion height={100}>
         <LineGraphCheckList />
       </Accordion>
       <div style={{ height: 300 }}>
