@@ -4,10 +4,15 @@ import { useSelector } from "react-redux";
 import graphMetaReducer from "../graphMeta/slice";
 import userDataReducer from "../userData/slice";
 import dataGroup from "../dataGroup/slice";
+import createSagaMiddleware from "redux-saga";
+import { coreSaga } from "../sagas/saga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(logger);
+    const middleware = getDefaultMiddleware().concat(logger).concat(sagaMiddleware);
+    return middleware;
   },
   reducer: {
     graphMeta: graphMetaReducer,
@@ -16,6 +21,7 @@ export const store = configureStore({
   },
 });
 
+sagaMiddleware.run(coreSaga);
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type StoreState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

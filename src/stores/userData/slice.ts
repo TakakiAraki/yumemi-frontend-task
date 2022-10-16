@@ -42,16 +42,25 @@ export const userDataSlice = createSlice({
   name: "userData",
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<Chart2DUserData[]>) => {
+    setUserData: (state, action: PayloadAction<Chart2DUserData[]>): UserDataState => {
       return {
         ...state,
-        userData: action.payload,
+        resource: action.payload,
+      };
+    },
+    updateUserData: (state, action: PayloadAction<Chart2DUserData>): UserDataState => {
+      return {
+        ...state,
+        resource: state.resource.map((val) => {
+          if (val.id === action.payload.id) return action.payload;
+          return val;
+        }),
       };
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData } = userDataSlice.actions;
+export const { setUserData, updateUserData } = userDataSlice.actions;
 
 export default userDataSlice.reducer;
