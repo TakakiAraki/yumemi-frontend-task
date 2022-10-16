@@ -9,6 +9,7 @@ export const is = {
   notNull: <T extends unknown>(value: T | null | undefined): value is T => value != null,
   client: typeof process === "undefined",
   server: typeof window === "undefined",
+  integer: (val: unknown): val is number => Number.isInteger(val),
   array: Array.isArray,
   isPC: () => window.matchMedia(MEDIA.IS_SP).matches,
   isSP: () => !window.matchMedia(MEDIA.IS_SP).matches,
