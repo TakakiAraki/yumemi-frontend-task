@@ -1,0 +1,16 @@
+.icon-button {
+  background: var(--color-bg-main);
+  box-shadow: 3px 4px 10px rgba(197, 71, 0, 0.2);
+  padding: 8px 12px;
+  outline: 0;
+  border: 0;
+  display: inline-flex;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &.-disabled {
+    opacity: 0.5;
+  }
+}
