@@ -3,7 +3,6 @@ import styles from "./Accordion.module.scss";
 import { useMeasure } from "react-use";
 import clsx from "clsx";
 import { Icon } from "~/assets/icons";
-import { Text } from "../text/Text";
 
 export interface AccordionProps {
   height: number | string;
