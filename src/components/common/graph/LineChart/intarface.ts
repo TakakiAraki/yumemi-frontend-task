@@ -15,6 +15,11 @@ export interface Chart2DMetaData {
   labels?: { [key: string]: string };
   labelOrder?: string[];
 }
+export interface GraphGroup {
+  id: string;
+  title: string;
+  userDataId: string[];
+}
 
 export interface Chart2DUserData {
   id: string;

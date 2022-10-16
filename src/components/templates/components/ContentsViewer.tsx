@@ -1,32 +1,95 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { BaseLineList } from "~/components/graphRecord/layout/BaseLineList";
 import styles from "./ContentsViewer.module.scss";
 import { FC } from "react";
-import { Chart2DMetaData, Chart2DUserData } from "~/components/common/graph/LineChart/intarface";
+import {
+  Chart2DMetaData,
+  Chart2DUserData,
+  GraphGroup,
+} from "~/components/common/graph/LineChart/intarface";
 
+type GraphType = {
+  demographics: Chart2DMetaData;
+};
+
+const validatinGraphTypes = (key: string, graphType: GraphType): Chart2DMetaData => {
+  if (key === "demographics") {
+    return graphType[key];
+  }
+  throw new Error(`グラフタイプが存在しません ${key}`);
+};
 const ContentsViewer: FC<{
-  graphRows: {
-    id: string;
-    title: string;
-    userDataId: string[];
-  }[];
-  userData: Chart2DUserData[];
-  meta: Chart2DMetaData;
-}> = ({ graphRows, meta, userData }) => {
+  meta: GraphType;
+}> = ({ meta }) => {
+  const data: Chart2DUserData[] = useMemo(
+    () => [
+      {
+        id: "hogehoge",
+        type: "demographics",
+        title: "都会の人口推移",
+        description: "都会の人口の推移を表示したマップ",
+        selectedLabels: ["13", "27", "40"],
+      },
+      {
+        id: "2hogehoge",
+        type: "demographics",
+        title: "関西圏マップ",
+        description: "関西の人口の推移を表示したマップ",
+        selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
+      },
+      {
+        id: "3hogehoge",
+        type: "demographics",
+        title: "四国マップ",
+        description: "四国の人口の推移を表示したマップ",
+        selectedLabels: ["36", "37", "38", "39"],
+      },
+      {
+        id: "4hogehoge",
+        type: "demographics",
+        title: "関西圏マップ",
+        description: "関西の人口の推移を表示したマップ",
+        selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
+      },
+    ],
+    [],
+  );
+
+  const dataGroup: GraphGroup[] = useMemo(
+    () => [
+      {
+        id: "hogehoge2",
+        title: "人口マップ",
+        userDataId: ["hogehoge", "2hogehoge", "3hogehoge"],
+      },
+      {
+        id: "hogehoge3",
+        title: "人口マップ2",
+        userDataId: ["4hogehoge", "2hogehoge"],
+      },
+      {
+        id: "hogehoge2",
+        title: "人口マップ3",
+        userDataId: ["hogehoge"],
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <div className={styles["content-template"]}>
-        {graphRows.map((rows) => {
+        {dataGroup.map((rows) => {
           return (
             <BaseLineList
               key={rows.id}
               title={rows.title}
               itemList={rows.userDataId.map((value) => {
-                const userDataItem = userData.find((val) => val.id === value);
+                const userDataItem = data.find((val) => val.id === value);
                 if (userDataItem == null) throw new Error(`user data is not found id[${value}]`);
                 return {
                   userData: userDataItem,
-                  meta: meta,
+                  meta: validatinGraphTypes(userDataItem.type, meta),
                 };
               })}
             />

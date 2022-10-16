@@ -4,6 +4,16 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+b {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: underline;
 }
