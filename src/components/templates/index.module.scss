@@ -1,59 +1,59 @@
 @import "~/styles/util.scss";
 
 .content-wrap {
-    position: relative;
-    display: grid;
-    max-height: 100vh;
-    max-width: 100%;
+  position: relative;
+  display: grid;
+  max-height: 100vh;
+  max-width: 100%;
 
+  grid-template-areas:
+    "header-area"
+    "content-area";
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 1fr;
+
+  @include pc() {
     grid-template-areas:
-        "header-area"
-        "content-area";
-    grid-template-rows: 100px 1fr;
-    grid-template-columns: 1fr;
+      "nav-area    header-area"
+      "nav-area    content-area";
+    grid-template-rows: 55px 1fr;
+    grid-template-columns: 100px 1fr;
+  }
+
+  > .header {
+    grid-area: header-area;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  > .content {
+    grid-area: content-area;
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  > .nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    grid-area: nav-area;
+    height: 100%;
+    transition-property: opacity;
+    transition-duration: 300ms;
 
     @include pc() {
-        grid-template-areas:
-            "nav-area    header-area"
-            "nav-area    content-area";
-        grid-template-rows: 55px 1fr;
-        grid-template-columns: 100px 1fr;
+      position: inherit;
+      display: block;
     }
+  }
 
-    > .header {
-        grid-area: header-area;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-    }
+  > .nav.-close {
+    visibility: hidden;
+    opacity: 0;
+  }
 
-    > .content {
-        grid-area: content-area;
-        max-height: 100%;
-        overflow: hidden;
-    }
-
-    > .nav {
-        position: absolute;
-        left: 0;
-        top: 0;
-        grid-area: nav-area;
-        height: 100%;
-        transition-property: opacity;
-        transition-duration: 300ms;
-
-        @include pc() {
-            position: inherit;
-            display: block;
-        }
-    }
-
-    > .nav.-close {
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    > .nav.-open {
-        opacity: 1;
-    }
+  > .nav.-open {
+    opacity: 1;
+  }
 }
