@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Chart2DState } from "~/components/common/graph/LineChart/intarface";
 import { BaseLineLayout } from "~/components/common/graph/LineChart/layouts/BaseLineLayout";
 import { LineChartContextProvider } from "~/components/common/graph/LineChart/state/machine";
@@ -12,7 +12,7 @@ export interface BaseLineListProps {
   itemList: Chart2DState[];
 }
 
-export const BaseLineList: FC<BaseLineListProps> = (props) => {
+const BaseLineListComponent: FC<BaseLineListProps> = (props) => {
   const isSp = useIsSP();
   return (
     <div className={styles["content-wrapper"]}>
@@ -68,3 +68,5 @@ const SPViewr: FC<BaseLineListProps> = (props) => {
     </Scroll>
   );
 };
+
+export const BaseLineList = memo(BaseLineListComponent);

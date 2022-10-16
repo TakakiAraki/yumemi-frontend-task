@@ -1,102 +1,120 @@
 import * as React from "react";
-import { PrefecturesAPIResult } from "~/usecases/prefectures/interfaces";
-import { UsecaseDemographicsResult } from "~/usecases/demographics/interface";
+import { Prefectures } from "~/usecases/prefectures/interfaces";
+import { UsecaseDemographicsSuccess } from "~/usecases/demographics/interface";
 import { Text } from "~/components/common/text/Text";
-import { BaseLineList } from "../graphRecord/layout/BaseLineList";
 import Scroll from "../common/scroll/Scrollbar";
+import styles from "./index.module.scss";
+import { useInterval, useToggle } from "react-use";
+import clsx from "clsx";
+import { useMemo } from "react";
+import ContentsViewer from "./components/ContentsViewer";
 
+// TODO propsなためコンポーネント向けにしたほうが良い。
 export interface IndexProps {
-  prefectures: PrefecturesAPIResult;
-  demographics: UsecaseDemographicsResult;
+  prefectures: Prefectures;
+  demographics: UsecaseDemographicsSuccess;
 }
 
 export const IndexPage = (props: IndexProps) => {
-  // computed
-  const result = props.demographics.state === "ERROR" ? [] : props.demographics.result;
-  const labels = React.useMemo(() => {
-    if (props.prefectures.state === "ERROR") return {};
+  const [isShowNav, _toggleNav] = useToggle(false);
 
-    return props.prefectures.result.result.reduce((prev, next) => {
+  const labels = React.useMemo(() => {
+    return props.prefectures.result.reduce((prev, next) => {
       return {
         [next.prefCode]: next.prefName,
         ...prev,
       };
     }, {});
   }, [props.prefectures]);
-  const data = result.map((val) => ({
-    label: val.date,
-    values: val.values,
-  }));
+
+  const data = useMemo(
+    () =>
+      props.demographics.map((val) => ({
+        label: val.date,
+        values: val.values,
+      })),
+    [props.demographics],
+  );
 
   // mock properties
-  const region = [
-    {
-      title: "都会の人口推移",
-      description: "都会の人口の推移を表示したマップ",
-      selectedLabels: ["13", "27", "30", "40"],
-    },
-    {
-      title: "関西圏マップ",
-      description: "関西の人口の推移を表示したマップ",
-      selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
-    },
-    {
-      title: "四国マップ",
-      description: "四国の人口の推移を表示したマップ",
-      selectedLabels: ["36", "37", "38", "39"],
-    },
-  ];
+  const region = useMemo(
+    () => [
+      {
+        id: "hogehoge",
+        title: "都会の人口推移",
+        description: "都会の人口の推移を表示したマップ",
+        selectedLabels: ["13", "27", "30", "40"],
+      },
+      {
+        id: "2hogehoge",
+        title: "関西圏マップ",
+        description: "関西の人口の推移を表示したマップ",
+        selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
+      },
+      {
+        id: "3hogehoge",
+        title: "四国マップ",
+        description: "四国の人口の推移を表示したマップ",
+        selectedLabels: ["36", "37", "38", "39"],
+      },
+    ],
+    [],
+  );
 
-  const place = [
-    {
-      title: "関西圏マップ",
-      description: "関西の人口の推移を表示したマップ",
-      selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
-    },
-  ];
+  const place = useMemo(
+    () => [
+      {
+        id: "3hogehoge",
+        title: "関西圏マップ",
+        description: "関西の人口の推移を表示したマップ",
+        selectedLabels: ["24", "25", "26", "27", "28", "29", "30"],
+      },
+    ],
+    [],
+  );
 
-  const properties = [
-    {
-      title: "人口マップ",
-      contents: region,
-    },
-    {
-      title: "人口マップ2",
-      contents: place,
-    },
-  ];
+  const properties = useMemo(
+    () => [
+      {
+        title: "人口マップ",
+        contents: region,
+      },
+      {
+        title: "人口マップ2",
+        contents: place,
+      },
+    ],
+    [],
+  );
 
-  const meta = {
-    data,
-    labels,
-    labelOrder: [],
-  };
+  const meta = useMemo(
+    () => ({
+      data,
+      labels,
+      labelOrder: [],
+    }),
+    [],
+  );
 
   return (
-    <div>
-      <Scroll height={"100vh"}>
-        {properties.map((val) => {
-          return (
-            <div key={val.title}>
-              <Text type="heading-1">{val.title}</Text>
-              <div>
-                <BaseLineList
-                  title="都会のマップ"
-                  itemList={val.contents.map((value) => {
-                    return {
-                      id: Math.random().toString(),
-                      meta: {
-                        ...meta,
-                      },
-                      ...value,
-                    };
-                  })}
-                />
-              </div>
-            </div>
-          );
+    <div className={styles["content-wrap"]}>
+      <header className={styles["header"]}>
+        <Text type="heading-1">japan doc</Text>
+      </header>
+      <nav
+        className={clsx(styles["nav"], {
+          [styles["-close"]]: !isShowNav,
+          [styles["-open"]]: isShowNav,
         })}
-      </Scroll>
+      >
+        hoge hoge hoge hoge hoge hoge hoge
+      </nav>
+
+      <article className={styles["content"]}>
+        <Scroll height="100%" width="100%">
+          <ContentsViewer properties={properties} meta={meta} />
+        </Scroll>
+      </article>
     </div>
   );
 };

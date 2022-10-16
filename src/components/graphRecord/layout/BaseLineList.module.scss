@@ -1,7 +1,7 @@
 .content-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 10px;
 }
 
 .base-pc {
@@ -11,10 +11,10 @@
 
 .base-sp {
   display: flex;
-  padding: 20px 0;
+  padding-bottom: 20px;
 
   > .content {
-    padding: 0 20px;
+    padding: 0 8px;
     overflow: hidden;
   }
 }
