@@ -68,6 +68,14 @@ export const LineChartContextProvider: FC<LineChartContextProviderProps> = (prop
       updateLabelOrder: updateLabelOrder.action,
       addLabel: updateLabel.add.action,
       removeLabel: updateLabel.remove.action,
+      onChange: (state) => {
+        if (is.null(props.onChange)) return;
+        props.onChange(state);
+      },
+      onSave: (state) => {
+        if (is.null(props.onSave)) return;
+        props.onSave(state);
+      },
     },
   });
 
