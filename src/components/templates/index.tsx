@@ -4,7 +4,7 @@ import { UsecaseDemographicsSuccess } from "~/usecases/demographics/interface";
 import { Text } from "~/components/common/text/Text";
 import Scroll from "../common/scroll/Scrollbar";
 import styles from "./index.module.scss";
-import { useInterval, useToggle } from "react-use";
+import { useToggle } from "react-use";
 import clsx from "clsx";
 import { useMemo } from "react";
 import ContentsViewer from "./components/ContentsViewer";
