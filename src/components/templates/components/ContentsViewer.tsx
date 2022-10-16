@@ -32,15 +32,6 @@ const ContentsViewer: FC<{
             />
           );
         })}
-
-        {JSON.stringify(graphRows)}
-        {JSON.stringify(
-          graphRows.map((rows) => {
-            return rows.userDataId.map((value) => {
-              return userData.find((val) => val.id === value);
-            });
-          }),
-        )}
       </div>
     </>
   );
