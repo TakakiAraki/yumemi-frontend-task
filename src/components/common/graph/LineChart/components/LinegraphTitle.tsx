@@ -6,5 +6,5 @@ import useSelectGraphLabelTitle from "../selectors/useSelectGraphLabelTitle";
 export const LineTitle = () => {
   const title = useSelectGraphLabelTitle();
   if (is.null(title)) return null;
-  return <Text type="text">{title}</Text>;
+  return <Text type="mini">{title}</Text>;
 };

@@ -6,5 +6,5 @@ import useSelectGraphLabelDescription from "../selectors/useSelectGraphLabelDesc
 export const LineDescription = () => {
   const description = useSelectGraphLabelDescription();
   if (is.null(description)) return null;
-  return <Text type="mini">{description}</Text>;
+  return <Text type="caption">{description}</Text>;
 };
