@@ -18,7 +18,7 @@ export interface Chart2DMetaData {
 export interface GraphGroup {
   id: string;
   title: string;
-  userDataId: string[];
+  userDataIdList: string[];
 }
 
 export interface Chart2DUserData {

@@ -4,6 +4,8 @@ import Scroll from "../common/scroll/Scrollbar";
 import styles from "./index.module.scss";
 import { Chart2DMetaData } from "../common/graph/LineChart/intarface";
 import dynamic from "next/dynamic";
+import { useDispatch } from "react-redux";
+import { setMetaData } from "~/stores/graphMeta/slice";
 
 const ContentsViewer = dynamic(() => import("./components/ContentsViewer"), { ssr: false });
 
@@ -12,7 +14,15 @@ export interface IndexProps {
 }
 
 export const IndexPage = (props: IndexProps) => {
-  // mock properties
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(
+      setMetaData({
+        ...props,
+      }),
+    );
+  }, [props]);
 
   return (
     <div className={styles["content-wrap"]}>
@@ -27,11 +37,7 @@ export const IndexPage = (props: IndexProps) => {
 
       <article className={styles["content"]}>
         <Scroll height="100%" width="100%">
-          <ContentsViewer
-            meta={{
-              demographics: props.demographics,
-            }}
-          />
+          <ContentsViewer />
         </Scroll>
       </article>
     </div>

@@ -3,6 +3,8 @@ import React from "react";
 import "reset-css/sass/_reset.scss";
 import "./_app.scss";
 import "~/styles/colors.scss";
+import { Provider } from "react-redux";
+import { store } from "~/stores/applicatrion/store";
 
 export default class Wrap extends App {
   render() {
@@ -10,7 +12,9 @@ export default class Wrap extends App {
 
     return (
       <div className="theme-white">
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </div>
     );
   }

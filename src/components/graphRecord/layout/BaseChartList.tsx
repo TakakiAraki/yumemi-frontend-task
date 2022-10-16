@@ -4,20 +4,22 @@ import { BaseLineLayout } from "~/components/common/graph/LineChart/layouts/Base
 import { LineChartContextProvider } from "~/components/common/graph/LineChart/state/machine";
 import Scroll from "~/components/common/scroll/Scrollbar";
 import { Text } from "~/components/common/text/Text";
+import useChartStateGetByGroupID from "~/stores/applicatrion/selectors/useChartStateGetByGroupID";
 import { useIsSP } from "~/uses/useIsSP";
 import styles from "./BaseChartList.module.scss";
 
 export interface BaseLineListProps {
-  title: string;
   itemList: Chart2DState[];
 }
 
-const BaseLineListComponent: FC<BaseLineListProps> = (props) => {
+const BaseLineListComponent: FC<{ id: string }> = (props) => {
   const isSp = useIsSP();
+  const chartData = useChartStateGetByGroupID(props.id);
+
   return (
     <div className={styles["content-wrapper"]}>
-      <Text type="heading-2">{props.title}</Text>
-      {isSp ? <SPViewr {...props} /> : <PCViewr {...props} />}
+      <Text type="heading-2">{chartData.title}</Text>
+      {isSp ? <SPViewr {...chartData} /> : <PCViewr {...chartData} />}
     </div>
   );
 };
