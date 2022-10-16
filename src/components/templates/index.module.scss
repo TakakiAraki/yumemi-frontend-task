@@ -9,51 +9,37 @@
   grid-template-areas:
     "header-area"
     "content-area";
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
 
   @include pc() {
     grid-template-areas:
-      "nav-area    header-area"
-      "nav-area    content-area";
+      "header-area"
+      "content-area";
     grid-template-rows: 55px 1fr;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 1fr;
   }
 
   > .header {
     grid-area: header-area;
     display: flex;
-    justify-content: left;
+    padding: 12px;
+    gap: 12px;
+    background-color: var(--color-bg-main);
+    justify-content: center;
     align-items: center;
+    // flex-direction: column;
+
+    @include pc {
+      flex-direction: row;
+      justify-content: left;
+      padding: 20px;
+    }
   }
 
   > .content {
     grid-area: content-area;
     max-height: 100%;
     overflow: hidden;
-  }
-
-  > .nav {
-    position: absolute;
-    left: 0;
-    top: 0;
-    grid-area: nav-area;
-    height: 100%;
-    transition-property: opacity;
-    transition-duration: 300ms;
-
-    @include pc() {
-      position: inherit;
-      display: block;
-    }
-  }
-
-  > .nav.-close {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  > .nav.-open {
-    opacity: 1;
   }
 }

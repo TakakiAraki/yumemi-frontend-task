@@ -6,6 +6,7 @@ import clsx from "clsx";
 export interface TextProps {
   type?: "heading-1" | "heading-2" | "text" | "mini" | "caption";
   tag?: "p" | "h1" | "h2" | "h3" | "span";
+  color?: "base" | "reverse" | "link" | "success" | "warn" | "error";
   children: ReactNode | ReactNode[] | string;
 }
 
@@ -28,7 +29,9 @@ export const Text = (props: TextProps & OtherProps) => {
   return createElement(
     _tag,
     {
-      className: clsx(styles["base"], styles[type]),
+      className: clsx(styles["base"], styles[type], {
+        [styles[`-${props.color || "base"}`]]: true,
+      }),
       ...otherProps,
     },
     children,

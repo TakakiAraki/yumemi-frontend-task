@@ -4,8 +4,6 @@ import { UsecaseDemographicsSuccess } from "~/usecases/demographics/interface";
 import { Text } from "~/components/common/text/Text";
 import Scroll from "../common/scroll/Scrollbar";
 import styles from "./index.module.scss";
-import { useToggle } from "react-use";
-import clsx from "clsx";
 import { useMemo } from "react";
 import ContentsViewer from "./components/ContentsViewer";
 
@@ -16,8 +14,6 @@ export interface IndexProps {
 }
 
 export const IndexPage = (props: IndexProps) => {
-  const [isShowNav, _toggleNav] = useToggle(false);
-
   const labels = React.useMemo(() => {
     return props.prefectures.result.reduce((prev, next) => {
       return {
@@ -99,16 +95,13 @@ export const IndexPage = (props: IndexProps) => {
   return (
     <div className={styles["content-wrap"]}>
       <header className={styles["header"]}>
-        <Text type="heading-1">japan doc</Text>
+        <Text type="heading-1" color="reverse">
+          japan doc
+        </Text>
+        <Text type="mini" color="reverse">
+          (日本の人口統計マップ)
+        </Text>
       </header>
-      <nav
-        className={clsx(styles["nav"], {
-          [styles["-close"]]: !isShowNav,
-          [styles["-open"]]: isShowNav,
-        })}
-      >
-        hoge hoge hoge hoge hoge hoge hoge
-      </nav>
 
       <article className={styles["content"]}>
         <Scroll height="100%" width="100%">
