@@ -4,6 +4,6 @@ import { useLineChartService } from "../state/machine";
 export default () => {
   const service = useLineChartService();
   return useSelector(service, ({ context }) => {
-    return context.description;
+    return context.userData.description;
   });
 };

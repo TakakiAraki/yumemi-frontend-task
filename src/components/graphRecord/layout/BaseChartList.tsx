@@ -5,7 +5,7 @@ import { LineChartContextProvider } from "~/components/common/graph/LineChart/st
 import Scroll from "~/components/common/scroll/Scrollbar";
 import { Text } from "~/components/common/text/Text";
 import { useIsSP } from "~/uses/useIsSP";
-import styles from "./BaseLineList.module.scss";
+import styles from "./BaseChartList.module.scss";
 
 export interface BaseLineListProps {
   title: string;
@@ -27,7 +27,7 @@ const PCViewr: FC<BaseLineListProps> = (props) => {
     <div className={styles["base-pc"]}>
       {props.itemList.map((val) => {
         return (
-          <LineChartContextProvider key={val.id} context={val}>
+          <LineChartContextProvider key={val.userData.id} context={val}>
             <BaseLineLayout />
           </LineChartContextProvider>
         );
@@ -42,7 +42,7 @@ const SPViewr: FC<BaseLineListProps> = (props) => {
       <div className={styles["base-sp"]}>
         {props.itemList.map((val) => {
           return (
-            <div className={styles["content"]} style={{ overflow: "hidden" }} key={val.id}>
+            <div className={styles["content"]} style={{ overflow: "hidden" }} key={val.userData.id}>
               <LineChartContextProvider context={val}>
                 <BaseLineLayout />
               </LineChartContextProvider>
@@ -54,10 +54,10 @@ const SPViewr: FC<BaseLineListProps> = (props) => {
 
   return (
     <Scroll>
-      <div className={styles["base-sp"]} style={{ width: `${props.itemList.length}00vw` }}>
+      <div className={styles["base-sp"]} style={{ width: `${props.itemList.length}00%` }}>
         {props.itemList.map((val) => {
           return (
-            <div className={styles["content"]} style={{ overflow: "hidden" }} key={val.id}>
+            <div className={styles["content"]} style={{ overflow: "hidden" }} key={val.userData.id}>
               <LineChartContextProvider context={val}>
                 <BaseLineLayout />
               </LineChartContextProvider>

@@ -2,6 +2,30 @@
 
 .base {
   color: var(--color-text-base);
+
+  &.-base {
+    color: var(--color-text-base);
+  }
+
+  &.-reverse {
+    color: var(--color-text-reverce);
+  }
+
+  &.-link {
+    color: var(--color-text-link);
+  }
+
+  &.-sccess {
+    color: var(--color-text-sccess);
+  }
+
+  &.-warn {
+    color: var(--color-text-warn);
+  }
+
+  &.-error {
+    color: var(--color-text-error);
+  }
 }
 
 .heading-1 {

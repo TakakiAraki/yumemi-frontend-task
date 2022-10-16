@@ -15,7 +15,7 @@ export const BaseLineLayout = () => {
   return (
     <div className={style["baseline-layout"]}>
       <LineTitle />
-      <Accordion height={45}>
+      <Accordion height={35}>
         <LineGraphCheckList />
       </Accordion>
       <div style={{ height: 300 }}>

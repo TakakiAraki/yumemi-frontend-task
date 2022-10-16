@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import useSelectGraphState from "../selectors/useSelectGraphState";
-import { Line, Legend, LineChart, XAxis, YAxis, CartesianGrid } from "recharts";
+import { Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import { is } from "~/utils/Is";
 import { useMeasure } from "react-use";
 
@@ -23,7 +23,7 @@ export const LineGraph: FC<LineGraphProps> = (props) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="label" />
         <YAxis />
-        <Legend />
+        <Tooltip isAnimationActive={false} />
         {(state.lineProps || []).map((val) => (
           <Line
             type="monotone"

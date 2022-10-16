@@ -56,6 +56,14 @@ $switch-color: var(--accordion-switch-color, rgba(255, 255, 255, 1));
     cursor: pointer;
   }
 
+  > .icon.-bottomfade {
+    animation: 1.5s ease-in-out 0s infinite running bottom-fade;
+  }
+
+  > .icon.-topfade {
+    animation: 1.5s ease-in-out 0s infinite reverse running bottom-fade;
+  }
+
   > .liner {
     position: absolute;
     bottom: 0;
@@ -109,5 +117,24 @@ $switch-color: var(--accordion-switch-color, rgba(255, 255, 255, 1));
       rgba(0, 0%, 0%, 0.987) 91.9%,
       rgba(0, 0%, 0%, 1) 100%
     );
+  }
+}
+
+@keyframes bottom-fade {
+  0% {
+    transform: translateY(-0%);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-0%);
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30%);
+    opacity: 0;
   }
 }

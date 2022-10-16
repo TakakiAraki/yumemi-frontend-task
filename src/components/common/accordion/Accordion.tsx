@@ -2,6 +2,7 @@ import React, { FC, ReactNode, useState } from "react";
 import styles from "./Accordion.module.scss";
 import { useMeasure } from "react-use";
 import clsx from "clsx";
+import { Icon } from "~/assets/icons";
 
 export interface AccordionProps {
   height: number | string;
@@ -24,8 +25,11 @@ export const Accordion: FC<AccordionProps> = (props) => {
       <div className={styles["opener"]}>
         <div className={styles["arrow-wrap"]}>
           <div className={styles["gradation"]} />
-          <a className={styles["icon"]} onClick={() => toggle((v) => !v)}>
-            click!
+          <a
+            className={clsx(styles["icon"], styles["-bottomfade"])}
+            onClick={() => toggle((v) => !v)}
+          >
+            <Icon.ChevronBottom size={15} />
           </a>
         </div>
       </div>
@@ -33,8 +37,8 @@ export const Accordion: FC<AccordionProps> = (props) => {
       <div className={styles["closer"]}>
         <div className={styles["arrow-wrap"]}>
           <div className={styles["liner"]} />
-          <a className={styles["icon"]} onClick={() => toggle((v) => !v)}>
-            click! close!
+          <a className={clsx(styles["icon"], styles["-topfade"])} onClick={() => toggle((v) => !v)}>
+            <Icon.ChevronTop size={15} />
           </a>
         </div>
       </div>

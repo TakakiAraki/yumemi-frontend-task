@@ -5,7 +5,7 @@ import { useLineChartService } from "../state/machine";
 export default () => {
   const service = useLineChartService();
   return useSelector(service, ({ context }) => {
-    const lineProps = context.selectedLabels?.map((val) => {
+    const lineProps = context.userData.selectedLabels?.map((val) => {
       const color = stringToHashColor(val + "soltingiikanji" + val);
       return {
         key: val,

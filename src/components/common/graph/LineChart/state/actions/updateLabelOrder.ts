@@ -9,7 +9,7 @@ export default createUpdater<
     input: unknown;
   }
 >("updateOrder", (context: Chart2DState, _event) => {
-  if (context.selectedLabels?.length === 0 || is.null(context.selectedLabels)) {
+  if (context.userData.selectedLabels?.length === 0 || is.null(context.userData.selectedLabels)) {
     context.meta.labelOrder = context.meta.labelOrder?.sort((a, b) =>
       Number(a) > Number(b) ? 1 : -1,
     );
@@ -18,10 +18,10 @@ export default createUpdater<
 
   context.meta.labelOrder = [
     ...(context.meta.labelOrder || [])
-      .filter((val) => context.selectedLabels?.includes(val))
+      .filter((val) => context.userData.selectedLabels?.includes(val))
       .sort((a, b) => (Number(a) > Number(b) ? 1 : -1)),
     ...(context.meta.labelOrder || [])
-      .filter((val) => !context.selectedLabels?.includes(val))
+      .filter((val) => !context.userData.selectedLabels?.includes(val))
       .sort((a, b) => (Number(a) > Number(b) ? 1 : -1)),
   ];
   return;
