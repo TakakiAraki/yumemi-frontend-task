@@ -1,19 +1,14 @@
 import { ComponentMeta } from "@storybook/react";
-import { Tag } from "~/components/common/tag/Tag";
+import { Button } from "~/components/common/button/Button";
 
 export const Primary = {};
 export default {
-  component: Tag,
+  component: Button,
   argTypes: {
     children: {
       name: "children",
       type: "string",
-      defaultValue: "タグ名",
-    },
-    color: {
-      name: "color (#XXXXXX)",
-      type: "string",
-      defaultValue: "#000000",
+      defaultValue: "ボタン",
     },
   },
-} as ComponentMeta<typeof Tag>;
+} as ComponentMeta<typeof Button>;

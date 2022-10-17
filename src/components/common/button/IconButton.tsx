@@ -2,13 +2,11 @@ import clsx from "clsx";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import styles from "./IconButton.module.scss";
 
-interface IconButtonProps {
+export type IconButtonProps = {
   size?: number;
-}
+} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
-export const IconButton: FC<
-  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & IconButtonProps
-> = (props) => {
+export const IconButton: FC<IconButtonProps> = (props) => {
   return (
     <button
       {...props}
